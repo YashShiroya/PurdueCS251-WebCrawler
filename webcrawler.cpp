@@ -11,13 +11,13 @@ WebCrawler::WebCrawler(int maxUrls, int nInitialURLs,  const char ** initialURLs
   // Update _maxUrls, _headURL and _tailURL
   
   _urlArray = new URLRecord[maxUrls]; //nInitialURLs later
-  char ** init = initialURLs;
+  const char ** init = initialURLs;
   
   for(int i = 0; i < nInitialURLs; i++) {
-  	_urlArray[i]._url = *init;
+  	_urlArray[i]._url = strdup(*init);
   	*init++;
   }
-  df vdvevre
+  
 }
 
 int main() {
