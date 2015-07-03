@@ -17,8 +17,7 @@ WebCrawler::WebCrawler(int maxUrls, int nInitialURLs,  const char ** initialURLs
   	_urlArray[i]._url = *init;
   	*init++;
   }
-  
-  
+  df vdvevre
 }
 
 int main() {
