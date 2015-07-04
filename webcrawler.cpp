@@ -38,14 +38,21 @@ void WebCrawler::onAnchorFound(char * url) {
 			strcat(urlcat,domain);
 
 			
-			if(domain[strlen(domain) - 1] == '/') {
-				strcat(urlcat, m);
+			if(url[0] == '/' && domain[strlen(domain) - 1] == '/') {
+					char * s = strdup(url);
+					*s++;
+					strcat(urlcat,s);
 			}
 			
-			else {
-				strcat(urlcat,"/");
-				strcat(urlcat, m);	
+			if((url[0] == '/' && domain[strlen(domain) - 1] != '/') || (url[0] != '/' && domain[strlen(domain) - 1] == '/')) {
+				strcat(urlcat,m);
 			}
+			
+			if(url[0] != '/' && domain[strlen(domain) - 1] != '/') {
+				strcat(urlcat,"/");
+				strcat(urlcat,m);
+			}
+	
 		
 			if(findArray(urlcat)) return;
 		
@@ -151,10 +158,40 @@ void WebCrawler::crawl() {
 
 int main(int argc, const char ** argv) { 
 	
-
+	/*if(strcmp(argv[1],"-u") || strcmp(argv[1],"-t") || strcmp(argv[1],"-a")) {
+		if(strcmp(argv[]))
+		if(argc < 4) {
+			printf("Args err.\n"); 
+			return 0;
+		}
+		
+		int len = 0;
+		
+		/*int i = 3;
+		while(i < argc) {
+			len += strlen(argv[i]);
+			i++;
+		}
+		char ** URLset = malloc(sizeof(char) * (argc - 3) * (len + argc - 3); //______________________________________________________Malloc Errors possible
+		
+		WebCrawler crawler = new WebCrawler(atoi(argv[2]),, )
+			
+		while()
+		char ** urlSet = argv;
+		*urlSet += 3;
+		
+		WebCrawler wCrawler = new WebCrawler()
+	}
+	 else {
+	 	if(argc < 3) {
+	 		printf("args err.\n");
+	 		return 0;
+	 	}
+	 	
+	 }*/
 	  const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 50;
+		int maxURLs = 10;
 		
 		printf("urlSet %s\n", *urlSet);
 		
