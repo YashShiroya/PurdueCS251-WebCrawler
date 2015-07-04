@@ -19,6 +19,7 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 	strcpy(urlcat, "");
 	strcpy(urlcase, "");
+	
 	if(_tailURL < _maxURLs) {
 		
 		if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p') { //HTTPS ______________________________________
