@@ -181,7 +181,7 @@ int main(int argc, const char ** argv) {
 		printf("urlSet %s\n", *urlSet);
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
-		//wCrawler->crawl();
+		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
 		wCrawler->printArray();
 		
