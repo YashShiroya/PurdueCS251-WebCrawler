@@ -14,7 +14,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
 	char * domain = strdup(_urlArray[_headURL]._url);
-	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 1000));
+	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100000));
 	
 	urlcat = "";
 	
