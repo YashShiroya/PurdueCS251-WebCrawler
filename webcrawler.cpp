@@ -22,7 +22,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 		if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p' && m[4] != 's') { //HTTPS ______________________________________
 		
-			//if(findArray(url)) return;
+			if(findArray(url)) return;
 			
 			_urlArray[_tailURL]._url = strdup(url);
 			_tailURL++;
@@ -178,8 +178,11 @@ int main(int argc, const char ** argv) {
 	  const char ** urlSet = argv;
 		urlSet += 1;
 		int maxURLs = 10;
+		
 		printf("urlSet %s\n", *urlSet);
+		
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+		
 		wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
