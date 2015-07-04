@@ -184,7 +184,7 @@ int main(int argc, const char ** argv) {
 	 }*/
 	  const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 20;
+		int maxURLs = 50;
 		
 		printf("urlSet %s\n", *urlSet);
 		
