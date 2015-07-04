@@ -137,7 +137,7 @@ void WebCrawler::crawl() {
 }
 
 
-int main(int argc, char ** argv) { 
+int main(int argc, const char ** argv) { 
 	
 	/*if(strcmp(argv[1],"-u") || strcmp(argv[1],"-t") || strcmp(argv[1],"-a")) {
 		if(strcmp(argv[]))
@@ -170,7 +170,7 @@ int main(int argc, char ** argv) {
 	 	}
 	 	
 	 }*/
-	 const char ** urlSet = (const char**)argv;
+	  const char ** urlSet = argv;
 		*urlSet += 2;
 		int maxURLs = 1000;
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 2, urlSet);
