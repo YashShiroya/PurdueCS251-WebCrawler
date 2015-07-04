@@ -30,7 +30,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		}
 	
 		else {
-
+			printf("domain %s\n", domain);
 			strcat(urlcat,domain);
 			printf("urlcat %s\n", urlcat);
 			if(domain[strlen(domain) - 1] == '/') {
