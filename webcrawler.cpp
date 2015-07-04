@@ -107,10 +107,10 @@ void WebCrawler::crawl() {
 	
 	char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
 	
-	if (buffer==NULL) {
+	if (buffer == NULL) {
 		  fprintf(stderr, "*** Cannot open URL\n");	  
 	}
-	else 	parse(buffer, n);
+	//else 	parse(buffer, n);
 	
 	_headURL++;
 
@@ -176,7 +176,7 @@ int main(int argc, const char ** argv) {
 		printf("urlSet %s\n", *urlSet);
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
-		//wCrawler->crawl();
+		wCrawler->crawl();
 		wCrawler->printArray();
 		
 	return 0;
