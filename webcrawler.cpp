@@ -18,15 +18,18 @@ void WebCrawler::onAnchorFound(char * url) {
 	char * urlcase = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	
 	strcpy(urlcat, "");
-	
+	strcpy(urlcase, "");
 	if(_tailURL < _maxURLs) {
 		
 		if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p') { //HTTPS ______________________________________
 		
 			if(m[4] == 's') return;
 			if(findArray(url)) return;
-			
-			_urlArray[_tailURL]._url = strdup(url);
+			if(m[strlen(m) - 1] != '/') {
+				strcat(urlcase,m);
+				strcat(urlcase,"/");
+			}
+			_urlArray[_tailURL]._url = strdup(urlcase);
 			_tailURL++;
 		
 		}
