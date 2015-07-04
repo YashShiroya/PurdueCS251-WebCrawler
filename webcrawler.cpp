@@ -15,6 +15,7 @@ void WebCrawler::onAnchorFound(char * url) {
 	char * m = strdup(url);
 	char * domain = strdup(_urlArray[_headURL]._url);
 	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
+	char * urlcase = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	
 	strcpy(urlcat, "");
 	
@@ -30,17 +31,32 @@ void WebCrawler::onAnchorFound(char * url) {
 		}
 	
 		else {
-			printf("domain %s\n", domain);
+			
+			
 			strcat(urlcat,domain);
-			printf("urlcat %s\n", urlcat);
+
 			if(domain[strlen(domain) - 1] == '/') {
+				if(url[0] == '/') {
+					char * s = strdup(url);
+					*s++;
+					strcat(urlcat,s);
+					
+				}
+				else {
+					strcat(urlcat,m);
+				}
+			}
+			
+			else if(url[0] == '/' && domain[strlen(domain) -1] != '/') {
+				strcat(urlcat,url);
+			}
+			else {
 				strcat(urlcat,"/");
+				strcat(urlcat,url);
 			}
 	
-			strcat(urlcat,m);
 		
-		
-			if(findArray(url)) return;
+			if(findArray(urlcat)) return;
 		
 			_urlArray[_tailURL]._url = strdup(url);
 			_tailURL++;
@@ -183,7 +199,7 @@ int main(int argc, const char ** argv) {
 		
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		
-		wCrawler->setTail(argc - 1);
+		//wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
 		wCrawler->printArray();
