@@ -97,7 +97,7 @@ void WebCrawler::setTail(int tail) {_tailURL = tail;}
 
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
-	for(int i = 0; i <= getTail(); i++) {
+	for(int i = 0; i < getTail(); i++) {
 		printf("%d %s\n", i + 1, _urlArray[i]._url);
 	}
 }
