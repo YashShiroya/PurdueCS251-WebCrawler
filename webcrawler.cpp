@@ -49,7 +49,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 			if(findArray(urlcat)) return;
 		
-			_urlArray[_tailURL]._url = strdup(url);
+			_urlArray[_tailURL]._url = strdup(urlcat);
 			_tailURL++;
 	
 		}
