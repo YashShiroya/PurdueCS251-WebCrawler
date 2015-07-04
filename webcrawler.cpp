@@ -5,24 +5,23 @@
 #include <stdlib.h>
 #include "openhttp.h"
 #include "SimpleHTMLParser.h"
-using namespace std;
 
 // Add your implementation here
 
 void onAnchorFound(char * url);
 
-
-
 void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
 	char * domain = strdup(_urlArray[_headURL]._url);
-	char * urlcat = (char*) malloc(sizeof(char*) * (strlen(url) + strlen(domain) + 100));
+	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	
 	urlcat = "";
 	
 	if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p') {
 	
+		if(findArray(url)) return;
+		
 		_urlArray[_tailURL]._url = strdup(url);
 		_tailURL++;
 	
@@ -38,12 +37,28 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 		strcat(urlcat,m);
 		
-		_urlArray[_tailURL]._url = strdup(urlcat);
+		
+		if(findArray(url)) return;
+		
+		_urlArray[_tailURL]._url = strdup(url);
 		_tailURL++;
 	
 	}
 		
 }
+
+bool WebCrawler::findArray(char * url) {
+	for(int i = 0; i <= _tailURL; i++) {
+		char * givenURL = strdup(url);
+		char * AtIndex = strdup(_urlArray[i]._url);
+		
+		if(strcmp(fetchHTML(givenURL), fetchHTML(AtIndex)) == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
@@ -73,7 +88,7 @@ void WebCrawler::crawl() {
 
 	int n;
 	
-  while (_headURL <_tailURL) {
+  while (_headURL < _tailURL) {
     
     //Fetch the next URL in _headURL
 	

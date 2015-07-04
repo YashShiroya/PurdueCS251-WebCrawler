@@ -51,7 +51,7 @@ FILE *openhttp( const char * url, char * contentType );
 //
 // Parameters:
 //   url: points to the URL to fetch.
-//   n:   Is a pointer that oints to an int where the size of the document is placed.
+//   n:   Is a pointer that points to an int where the size of the document is placed.
 //
 // Result:
 //   It returns a pointer in memory where the document was placed.

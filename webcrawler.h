@@ -36,6 +36,10 @@ class WebCrawler : public SimpleHTMLParser {
   // crawl the web
   void crawl();
   
+  //Helper Method Find
+  bool findArray(char * url);
+  
+  //Pareser Sublcassing
   void onAnchorFound(char * url);
   
   void onContentFound(char * url);
