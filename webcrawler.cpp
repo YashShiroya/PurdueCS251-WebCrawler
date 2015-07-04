@@ -174,10 +174,10 @@ int main(int argc, const char ** argv) {
 		urlSet += 1;
 		int maxURLs = 1000;
 		printf("urlSet %s\n", *urlSet);
-		/*WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
-		wCrawler->printArray();*/
+		wCrawler->printArray();
 		
 	return 0;
 }
