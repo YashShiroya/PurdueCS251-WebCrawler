@@ -171,10 +171,10 @@ int main(int argc, const char ** argv) {
 	 	
 	 }*/
 	  const char ** urlSet = argv;
-		*urlSet += 2;
+		*urlSet += 1;
 		int maxURLs = 1000;
-		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 2, urlSet);
-		wCrawler->setTail(argc - 2);
+		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+		wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		wCrawler->printArray();
 		
