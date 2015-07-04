@@ -58,9 +58,10 @@ WebCrawler::onContentFound(char * url) {
 
 bool WebCrawler::findArray(char * url) {
 		int i = 0; 
+		
+	for(i = 0; i <= _tailURL; i++) {
 		char * givenURL = strdup(url);
 		char * AtIndex = strdup(_urlArray[i]._url);
-	for(i = 0; i <= _tailURL; i++) {
 		if(strcmp(givenURL,AtIndex) == 0) {
 			return false;
 		}
