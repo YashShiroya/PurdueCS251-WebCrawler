@@ -26,10 +26,13 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 			if(m[4] == 's') return;
 			if(findArray(url)) return;
+			
 			if(m[strlen(m) - 1] != '/') {
 				strcat(urlcase,m);
 				strcat(urlcase,"/");
 			}
+			else strcat(urlcase,m);
+			
 			_urlArray[_tailURL]._url = strdup(urlcase);
 			_tailURL++;
 		
