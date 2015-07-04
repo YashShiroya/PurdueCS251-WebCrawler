@@ -177,7 +177,7 @@ int main(int argc, const char ** argv) {
 	 }*/
 	  const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 1000;
+		int maxURLs = 10;
 		printf("urlSet %s\n", *urlSet);
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
