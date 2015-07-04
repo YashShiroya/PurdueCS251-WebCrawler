@@ -18,32 +18,36 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 	urlcat = "";
 	
-	if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p') {
-	
-		if(findArray(url)) return;
+	if(_tailURL < _maxURLs) {
 		
-		_urlArray[_tailURL]._url = strdup(url);
-		_tailURL++;
-	
-	}
-	
-	else {
-
-		strcat(urlcat,domain);
-	
-		if(domain[strlen(domain) - 1] == '/') {
-			strcat(urlcat,"/");
+		if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p' && m[4] != 's') { //HTTPS ______________________________________
+		
+			if(findArray(url)) return;
+			
+			_urlArray[_tailURL]._url = strdup(url);
+			_tailURL++;
+		
 		}
 	
-		strcat(urlcat,m);
-		
-		
-		if(findArray(url)) return;
-		
-		_urlArray[_tailURL]._url = strdup(url);
-		_tailURL++;
+		else {
+
+			strcat(urlcat,domain);
 	
+			if(domain[strlen(domain) - 1] == '/') {
+				strcat(urlcat,"/");
+			}
+	
+			strcat(urlcat,m);
+		
+		
+			if(findArray(url)) return;
+		
+			_urlArray[_tailURL]._url = strdup(url);
+			_tailURL++;
+	
+		}
 	}
+	return;
 		
 }
 
@@ -82,7 +86,16 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   
 }
 
+int WebCrawler::getTail() { return _tailURL;}
 
+void WebCrawler::setTail(int tail) {_tailURL = tail;}
+
+void WebCrawler::printArray() {
+	printf("URL Array:\n");
+	for(int i = 0; i <= getTail(); i++) {
+		printf("%d %s\n", i + 1, _urlArray[i]._url);
+	}
+}
 
 void WebCrawler::crawl() {
 
@@ -124,10 +137,46 @@ void WebCrawler::crawl() {
 }
 
 
-int main() {
+int main(int argc, char ** argv) { 
 	
-	char * url;
-	//url = argv[1];
-	
+	/*if(strcmp(argv[1],"-u") || strcmp(argv[1],"-t") || strcmp(argv[1],"-a")) {
+		if(strcmp(argv[]))
+		if(argc < 4) {
+			printf("Args err.\n"); 
+			return 0;
+		}
+		
+		int len = 0;
+		
+		/*int i = 3;
+		while(i < argc) {
+			len += strlen(argv[i]);
+			i++;
+		}
+		char ** URLset = malloc(sizeof(char) * (argc - 3) * (len + argc - 3); //______________________________________________________Malloc Errors possible
+		
+		WebCrawler crawler = new WebCrawler(atoi(argv[2]),, )
+			
+		while()
+		char ** urlSet = argv;
+		*urlSet += 3;
+		
+		WebCrawler wCrawler = new WebCrawler()
+	}
+	 else {
+	 	if(argc < 3) {
+	 		printf("args err.\n");
+	 		return 0;
+	 	}
+	 	
+	 }*/
+	 const char ** urlSet = (const char**)argv;
+		*urlSet += 2;
+		int maxURLs = 1000;
+		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 2, urlSet);
+		wCrawler->setTail(argc - 2);
+		wCrawler->crawl();
+		wCrawler->printArray();
+		
 	return 0;
 }

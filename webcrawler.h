@@ -38,6 +38,9 @@ class WebCrawler : public SimpleHTMLParser {
   
   //Helper Method Find
   bool findArray(char * url);
+  int getTail();
+  void setTail(int tail);
+  void printArray();
   
   //Pareser Sublcassing
   void onAnchorFound(char * url);
