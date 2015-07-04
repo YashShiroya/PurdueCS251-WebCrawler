@@ -21,8 +21,15 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 	urlcat = "";
 	
-	if(strcmp(url.substr(0,4),"http") != 0) {
+	if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p') {
 	
+		_urlArray[_tailURL]._url = strdup(url);
+		_tailURL++;
+	
+	}
+	
+	else {
+
 		strcat(urlcat,domain);
 	
 		if(domain[strlen(domain) - 1] == '/') {
@@ -35,13 +42,6 @@ void WebCrawler::onAnchorFound(char * url) {
 		_tailURL++;
 	
 	}
-	
-	else {
-	
-		_urlArray[_tailURL]._url = strdup(url);
-		_tailURL++;
-	
-	}
 		
 }
 
@@ -51,7 +51,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   // insert the initialURls
   // Update _maxUrls, _headURL and _tailURL
   
-  _urlArray = new URLRecord[maxUrls]; //nInitialURLs later
+  _urlArray = new URLRecord[maxURLs]; //nInitialURLs later
   _maxURLs = maxURLs;
   _headURL = 0;
   _tailURL = nInitialURLs;
@@ -60,7 +60,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
     
   for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
-  	_urlArray[i].description = strdup("default");
+  	_urlArray[i]._description = strdup("default");
   	*init++;
   }
  
@@ -69,7 +69,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 
 
 
-Webcrawler::crawl() {
+void WebCrawler::crawl() {
 
 	int n;
 	
@@ -77,7 +77,7 @@ Webcrawler::crawl() {
     
     //Fetch the next URL in _headURL
 	
-	char * buffer = fetchHTML( urlArray[_headURL]._url, &n);
+	char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
 	
 	if (buffer==NULL) {
 		  fprintf(stderr, "*** Cannot open URL\n");	  
@@ -112,7 +112,7 @@ Webcrawler::crawl() {
 int main() {
 	
 	char * url;
-	url = argv[1];
+	//url = argv[1];
 	
 	return 0;
 }
