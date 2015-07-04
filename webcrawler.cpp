@@ -48,10 +48,10 @@ void WebCrawler::onAnchorFound(char * url) {
 				}
 			}
 			
-			if(url[0] == '/' && domain[strlen(domain) -1] != '/') {
+			if(url[0] == '/' && domain[strlen(domain) - 1] != '/') {
 				strcat(urlcat,url);
 			}
-			else {
+			if(url[0] != '/' && domain[strlen(domain) - 1] != '/') {
 				strcat(urlcat,"/");
 				strcat(urlcat,url);
 			}
