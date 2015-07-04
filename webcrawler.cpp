@@ -52,7 +52,7 @@ void WebCrawler::onAnchorFound(char * url) {
 }
 
 void
-SimpleHTMLParser::onContentFound(char * url) {
+WebCrawler::onContentFound(char * url) {
 	return;
 }
 
