@@ -22,7 +22,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 		if(m[0] == 'h' && m[1] == 't' && m[2] == 't' && m[3] == 'p' && m[4] != 's') { //HTTPS ______________________________________
 		
-			if(findArray(url)) return;
+			//if(findArray(url)) return;
 			
 			_urlArray[_tailURL]._url = strdup(url);
 			_tailURL++;
