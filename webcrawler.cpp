@@ -51,6 +51,11 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 }
 
+void
+SimpleHTMLParser::onContentFound(char * url) {
+	return;
+}
+
 bool WebCrawler::findArray(char * url) {
 	for(int i = 0; i <= _tailURL; i++) {
 		char * givenURL = strdup(url);
@@ -110,7 +115,7 @@ void WebCrawler::crawl() {
 	if (buffer == NULL) {
 		  fprintf(stderr, "*** Cannot open URL\n");	  
 	}
-	//else 	parse(buffer, n);
+	else 	parse(buffer, n);
 	
 	_headURL++;
 
@@ -176,7 +181,8 @@ int main(int argc, const char ** argv) {
 		printf("urlSet %s\n", *urlSet);
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
-		wCrawler->crawl();
+		//wCrawler->crawl();
+		printf("tail %d", wCrawler->getTail());
 		wCrawler->printArray();
 		
 	return 0;
