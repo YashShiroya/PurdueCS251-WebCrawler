@@ -61,7 +61,7 @@ bool WebCrawler::findArray(char * url) {
 	for(int i = 0; i < _tailURL; i++) {
 		char * givenURL = strdup(url);
 		char * AtIndex = strdup(_urlArray[i]._url);
-		if(strcmp(fetchHTML(givenURL, &n1), fetchHTML(AtIndex, &n2)) == 0) {
+		if(strcmp(givenURL, AtIndex) == 0) {
 			return false;
 		}
 	}
