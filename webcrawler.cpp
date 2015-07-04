@@ -77,11 +77,11 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   const char ** init = initialURLs;
   
     
-  for(int i = 0; i < nInitialURLs; i++) {
+  /*for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
   	_urlArray[i]._description = strdup("default");
   	*init++;
-  }
+  }*/
  
   
 }
@@ -177,7 +177,7 @@ int main(int argc, const char ** argv) {
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
-		//wCrawler->printArray();
+		wCrawler->printArray();
 		
 	return 0;
 }
