@@ -38,21 +38,14 @@ void WebCrawler::onAnchorFound(char * url) {
 			strcat(urlcat,domain);
 
 			
-			if(url[0] == '/' && domain[strlen(domain) - 1] == '/') {
-					char * s = strdup(url);
-					*s++;
-					strcat(urlcat,s);
+			if(domain[strlen(domain) - 1] == '/') {
+				strcat(urlcat, m);
 			}
 			
-			if((url[0] == '/' && domain[strlen(domain) - 1] != '/') || (url[0] != '/' && domain[strlen(domain) - 1] == '/')) {
-				strcat(urlcat,m);
-			}
-			
-			if(url[0] != '/' && domain[strlen(domain) - 1] != '/') {
+			else {
 				strcat(urlcat,"/");
-				strcat(urlcat,url);
+				strcat(urlcat, m);	
 			}
-	
 		
 			if(findArray(urlcat)) return;
 		
