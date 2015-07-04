@@ -32,7 +32,7 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 		else {
 			
-			
+			if(url[0] == '/' && url[1] == '/') return;			
 			strcat(urlcat,domain);
 
 			if(domain[strlen(domain) - 1] == '/') {
