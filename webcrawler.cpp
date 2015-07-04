@@ -29,7 +29,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 		}
 	
-		/*else {
+		else {
 
 			strcat(urlcat,domain);
 	
@@ -45,7 +45,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			_urlArray[_tailURL]._url = strdup(url);
 			_tailURL++;
 	
-		}*/
+		}
 	}
 	return;
 		
