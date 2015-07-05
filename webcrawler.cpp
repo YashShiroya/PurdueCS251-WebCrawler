@@ -8,8 +8,6 @@
 
 // Add your implementation here
 
-void onAnchorFound(char * url);
-
 void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
@@ -70,6 +68,7 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 }
 
+
 void
 WebCrawler::onContentFound(char * url) {
 	return;
@@ -86,6 +85,7 @@ bool WebCrawler::findArray(char * url) {
 	}
 	return false;
 }
+
 
 
 /*bool
