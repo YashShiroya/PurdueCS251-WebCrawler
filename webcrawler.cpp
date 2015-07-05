@@ -90,7 +90,7 @@ WebCrawler::onContentFound(char character) {
 	*description = '\0';
 	if(character == '+') {
 		_urlArray[_headURL]._description = strdup(desc);
-		//setNull(desc);
+		description = desc;
 	}
 	return;
 }
