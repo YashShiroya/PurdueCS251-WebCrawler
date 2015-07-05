@@ -75,6 +75,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			if (match(&b,"</TITLE>")) {
 				// End script
 				onContentFound('+');
+				printf("b %s", &b);
 				state = START;
 			}
 			else {
