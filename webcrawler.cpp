@@ -72,6 +72,15 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 }
 
+void WebCrawler::setNull(char * str) {
+	int len = strlen(str);
+	char * s = str;
+	for(int i = 0; i < len; i++) {
+		*s = '\0';
+		s++;
+	}
+}
+
 
 void
 WebCrawler::onContentFound(char character) {
@@ -80,8 +89,8 @@ WebCrawler::onContentFound(char character) {
 	description++;
 	*description = '\0';
 	if(character == '+') {
-
 		_urlArray[_headURL]._description = strdup(desc);
+		setNull(desc);
 	}
 	return;
 }

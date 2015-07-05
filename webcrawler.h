@@ -41,11 +41,14 @@ class WebCrawler : public SimpleHTMLParser {
   int getTail();
   void setTail(int tail);
   void printArray();
+  void setNull(char * str);
   
   //Pareser Sublcassing
   void onAnchorFound(char * url);
   
   void onContentFound(char b);
+  
+  
   
   //bool parse(char * buffer, int n);
 
