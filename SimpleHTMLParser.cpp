@@ -33,6 +33,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		switch (state) {
 		case START: {
 			if (match(&b,"<SCRIPT")) {
+				printf("entered script\n");
 				state = SCRIPT;
 			}
 			else if (match(&b,"<!--")) {
@@ -49,6 +50,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			}
 			//Changes made______________________________________________________
 			else if (match(&b, "<TITLE>")) {
+				printf("entered title\n");
 				state = TITLE;
 			}
 			//_________________________________________________________________
@@ -72,7 +74,6 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		}
 		//____________________________________________________________
 		case TITLE: {
-		printf("yolo\n");
 			if (match(&b,"</TITLE>")) {
 				// End script
 				onContentFound('+');
