@@ -21,7 +21,7 @@ bool
 SimpleHTMLParser::parse(char * buffer, int n)
 {
 	enum { START, TAG, SCRIPT, ANCHOR, HREF,
-	       COMMENT, FRAME, SRC } state;
+	       COMMENT, FRAME, SRC, TITLE, META } state; //TITLE and META
 
 	state = START;
 	
@@ -47,8 +47,13 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if	(match(&b,"<")) {
 				state = TAG;
 			}
+			//Changes made______________________________________________________
+			else if (match(&b, "<TITLE>")) {
+				state = TITLE;
+			}
+			//_________________________________________________________________
 			else {
-				char c = *b;
+				/*char c = *b;
 				//Substitute one or more blank chars with a single space
 				if (c=='\n'||c=='\r'||c=='\t'||c==' ') {
 					if (!lastCharSpace) {
@@ -60,11 +65,24 @@ SimpleHTMLParser::parse(char * buffer, int n)
 					onContentFound(c);
 					lastCharSpace = false;
 				}
-				
+				*/
 				b++;
 			}
 			break;
 		}
+		//____________________________________________________________
+		case TITLE: {
+			if (match(&b,"</title>")) {
+				// End script
+				state = START;
+			}
+			else {
+				onContentFound(*b);
+				b++;
+			}
+			break;
+		}
+		//____________________________________________________________
 		case ANCHOR: {
 			if (match(&b,"href=\"")) {
 				state = HREF;
