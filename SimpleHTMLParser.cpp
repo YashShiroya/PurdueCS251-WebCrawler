@@ -45,17 +45,13 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<FRAME ")) {
 				state = FRAME;
 			}
-			else if (match(&b, "<TITLE>")) {
-				printf("entered title\n");
-				state = TITLE;
-			}
 			else if	(match(&b,"<")) {
 				state = TAG;
 			}
 			//Changes made______________________________________________________
 			//_________________________________________________________________
 			else {
-				char c = *b;
+				/*char c = *b;
 				//Substitute one or more blank chars with a single space
 				if (c=='\n'||c=='\r'||c=='\t'||c==' ') {
 					if (!lastCharSpace) {
@@ -66,7 +62,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				else {
 					onContentFound(c);
 					lastCharSpace = false;
-				}
+				}*/
 				
 				b++;
 			}
@@ -77,6 +73,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			if (match(&b,"</TITLE>")) {
 				// End script
 				onContentFound('+');
+				
 				state = START;
 			}
 			else {
