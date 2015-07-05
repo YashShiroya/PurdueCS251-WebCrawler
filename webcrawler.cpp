@@ -28,6 +28,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			else strcat(urlcase,m);
 			
 			_urlArray[_tailURL]._url = strdup(urlcase);
+			_urlArray[_tailURL]._description = strdup("default");
 			_tailURL++;
 		
 		}
@@ -60,6 +61,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			if(findArray(urlcat)) return;
 		
 			_urlArray[_tailURL]._url = strdup(urlcat);
+			_urlArray[_tailURL]._description = strdup("default");
 			_tailURL++;
 	
 		}
