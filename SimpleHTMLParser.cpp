@@ -20,7 +20,7 @@ SimpleHTMLParser::match(char **b, const char *m) {
 bool
 SimpleHTMLParser::parse(char * buffer, int n)
 {
-	enum { START, TAG, SCRIPT, ANCHOR, HREF,
+	/*enum { START, TAG, SCRIPT, ANCHOR, HREF,
 	       COMMENT, FRAME, SRC } state;
 
 	state = START;
@@ -165,7 +165,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		default:;
 		}
 		
-	}
+	}*/
 }
 
 void
