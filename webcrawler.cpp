@@ -79,11 +79,10 @@ WebCrawler::onContentFound(char character) {
 	*description = c;
 	description++;
 	*description = '\0';
-	printf("\n\nAbove+\n\n");
 	if(character == '+') {
-		printf("\n\nEnter+\n\n");
+
 		_urlArray[_headURL]._description = strdup(desc);
-		strcpy(description, "");
+		strcpy(desc, "");
 	}
 	return;
 }
