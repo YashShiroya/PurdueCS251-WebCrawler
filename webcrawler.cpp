@@ -88,7 +88,7 @@ bool WebCrawler::findArray(char * url) {
 
 
 
-/*bool
+/*boo
 WebCrawler::parse(char * buffer, int n)
 {
 	enum { START, TAG, SCRIPT, ANCHOR, HREF,
