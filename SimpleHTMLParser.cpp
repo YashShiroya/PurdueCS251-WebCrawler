@@ -72,10 +72,11 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		}
 		//____________________________________________________________
 		case TITLE: {
+		printf("b %s", &b);
 			if (match(&b,"</TITLE>")) {
 				// End script
 				onContentFound('+');
-				printf("b %s", &b);
+				
 				state = START;
 			}
 			else {
