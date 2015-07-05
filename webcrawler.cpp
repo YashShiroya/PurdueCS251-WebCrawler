@@ -70,8 +70,6 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 }
 
-
-
 void
 WebCrawler::onContentFound(char * url) {
 	return;
@@ -89,7 +87,8 @@ bool WebCrawler::findArray(char * url) {
 	return false;
 }
 
-bool
+
+/*bool
 WebCrawler::parse(char * buffer, int n)
 {
 	enum { START, TAG, SCRIPT, ANCHOR, HREF,
@@ -239,6 +238,8 @@ WebCrawler::parse(char * buffer, int n)
 		
 	}
 }
+*/
+
 
 
 

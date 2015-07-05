@@ -14,7 +14,7 @@ class SimpleHTMLParser {
  public:
 	SimpleHTMLParser();
 	
-	virtual bool parse(char * buffer, int n);
+	bool parse(char * buffer, int n);
 
 	// Calbacks
 	virtual void onContentFound(char c);

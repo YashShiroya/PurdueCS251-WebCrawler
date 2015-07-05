@@ -47,8 +47,9 @@ class WebCrawler : public SimpleHTMLParser {
   
   void onContentFound(char * url);
   
-  bool parse(char * buffer, int n);
+  //bool parse(char * buffer, int n);
 
+  //bool match(char **b, const char *m);
   // Write array of URLs and descriptions to file
   void writeURLFile(const char * urlFileName);
 
