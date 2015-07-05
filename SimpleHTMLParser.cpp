@@ -45,14 +45,14 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<FRAME ")) {
 				state = FRAME;
 			}
-			else if	(match(&b,"<")) {
-				state = TAG;
-			}
-			//Changes made______________________________________________________
 			else if (match(&b, "<TITLE>")) {
 				printf("entered title\n");
 				state = TITLE;
 			}
+			else if	(match(&b,"<")) {
+				state = TAG;
+			}
+			//Changes made______________________________________________________
 			//_________________________________________________________________
 			else {
 				/*char c = *b;
