@@ -52,7 +52,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				state = TITLE;
 			}
 			//_________________________________________________________________
-			else {
+			/*else {
 				/*char c = *b;
 				//Substitute one or more blank chars with a single space
 				if (c=='\n'||c=='\r'||c=='\t'||c==' ') {
@@ -65,14 +65,14 @@ SimpleHTMLParser::parse(char * buffer, int n)
 					onContentFound(c);
 					lastCharSpace = false;
 				}
-				*/
-				b++;
-			}
+				
+				//b++;
+			}*/
 			break;
 		}
 		//____________________________________________________________
 		case TITLE: {
-			if (match(&b,"</title>")) {
+			if (match(&b,"</TITLE>")) {
 				// End script
 				onContentFound('+');
 				state = START;
