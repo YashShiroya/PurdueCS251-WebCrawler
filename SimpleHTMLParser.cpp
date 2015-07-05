@@ -74,6 +74,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		case TITLE: {
 			if (match(&b,"</title>")) {
 				// End script
+				onContentFound('+');
 				state = START;
 			}
 			else {

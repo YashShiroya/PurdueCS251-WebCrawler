@@ -7,6 +7,8 @@
 #include "SimpleHTMLParser.h"
 
 // Add your implementation here
+char * description = (char*) malloc(500);
+char * desc = description;
 
 void WebCrawler::onAnchorFound(char * url) {
 
@@ -72,7 +74,16 @@ void WebCrawler::onAnchorFound(char * url) {
 
 
 void
-WebCrawler::onContentFound(char * url) {
+WebCrawler::onContentFound(char character) {
+	char c = character;
+	*description = c;
+	description++;
+	*description = '\0';
+	
+	if(character == '+') {
+		_urlArray[_headURL]._description = strdup(desc);
+		strcpy(description, "");
+	}
 	return;
 }
 
@@ -100,6 +111,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   _headURL = 0;
   _tailURL = nInitialURLs;
   const char ** init = initialURLs;
+  strcpy(description, "");
   
     
   for(int i = 0; i < nInitialURLs; i++) {

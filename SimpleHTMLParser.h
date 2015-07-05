@@ -8,7 +8,9 @@ class SimpleHTMLParser {
 	// URL read in anchor
 
 	int urlAnchorLength;
+
 	char urlAnchor[MaxURLLength];
+
 	
 	bool match(char **b, const char *m);
  public:
