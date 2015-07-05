@@ -87,162 +87,6 @@ bool WebCrawler::findArray(char * url) {
 }
 
 
-
-/*boo
-WebCrawler::parse(char * buffer, int n)
-{
-	enum { START, TAG, SCRIPT, ANCHOR, HREF,
-	       COMMENT, FRAME, SRC } state;
-
-	state = START;
-	
-	char * bufferEnd = buffer + n;
-	char * b = buffer;
-	bool lastCharSpace = false;
-	while (b < bufferEnd) {
-		//printf("<%c,%d,%d>", *b, *b,state);
-		switch (state) {
-		case START: {
-			if (match(&b,"<SCRIPT")) {
-				state = SCRIPT;
-			}
-			else if (match(&b,"<!--")) {
-				state = COMMENT;
-			}
-			else if (match(&b,"<A ")) {
-				state = ANCHOR;
-			}
-			else if (match(&b,"<FRAME ")) {
-				state = FRAME;
-			}
-			else if	(match(&b,"<")) {
-				state = TAG;
-			}
-			else {
-				char c = *b;
-				//Substitute one or more blank chars with a single space
-				if (c=='\n'||c=='\r'||c=='\t'||c==' ') {
-					if (!lastCharSpace) {
-						onContentFound(' ');
-					}
-					lastCharSpace = true;
-				}
-				else {
-					onContentFound(c);
-					lastCharSpace = false;
-				}
-				
-				b++;
-			}
-			break;
-		}
-		case ANCHOR: {
-			if (match(&b,"href=\"")) {
-				state = HREF;
-				urlAnchorLength=0;
-				//printf("href=");
-			}
-			else if (match(&b,">")) {
-				// End script
-				state = START;
-			}
-			else {
-				b++;
-			}
-			break;
-				
-		}
-		case HREF: {
-			if (match(&b,"\"")) {
-				// Found ending "
-				state = ANCHOR;
-				urlAnchor[urlAnchorLength] = '\0';
-				onAnchorFound(urlAnchor);
-				//printf("\n");
-			}
-			else {
-				if ( urlAnchorLength < MaxURLLength-1) {
-					urlAnchor[urlAnchorLength] = *b;
-					urlAnchorLength++;
-				}
-				//printf("%c", *b, *b);
-				b++;
-			}
-			break;
-		}
-		case FRAME: {
-			if (match(&b,"src=\"")) {
-				state = SRC;
-				urlAnchorLength=0;
-				//printf("href=");
-			}
-			else if (match(&b,">")) {
-				// End script
-				state = START;
-			}
-			else {
-				b++;
-			}
-			break;
-				
-		}
-		case SRC: {
-			if (match(&b,"\"")) {
-				// Found ending "
-				state = FRAME;
-				urlAnchor[urlAnchorLength] = '\0';
-				onAnchorFound(urlAnchor);
-				//printf("\n");
-			}
-			else {
-				if ( urlAnchorLength < MaxURLLength-1) {
-					urlAnchor[urlAnchorLength] = *b;
-					urlAnchorLength++;
-				}
-				//printf("%c", *b, *b);
-				b++;
-			}
-			break;
-		}
-		case SCRIPT: {
-			if (match(&b,"/SCRIPT>")) {
-				// End script
-				state = START;
-			}
-			else {
-				b++;
-			}
-			break;
-		}
-		case COMMENT: {
-			if (match(&b,"-->")) {
-				// End comments
-				state = START;
-			}
-			else {
-				b++;
-			}
-			break;
-		}
-		case TAG: {
-			if (match(&b, ">")) {
-				state = START;
-			}
-			else {
-				b++;
-			}
-			break;
-		}
-		default:;
-		}
-		
-	}
-}
-*/
-
-
-
-
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
   // Allocate space for _urlArray
@@ -272,7 +116,7 @@ void WebCrawler::setTail(int tail) {_tailURL = tail;}
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
 	for(int i = 0; i < getTail(); i++) {
-		printf("%d %s\n", i + 1, _urlArray[i]._url);
+		printf("%d URL: %s\n%d DISC:]n", i + 1, _urlArray[i]._url, i + 1, _urlArray[i]._description);
 	}
 }
 
@@ -317,38 +161,7 @@ void WebCrawler::crawl() {
 
 
 int main(int argc, const char ** argv) { 
-	
-	/*if(strcmp(argv[1],"-u") || strcmp(argv[1],"-t") || strcmp(argv[1],"-a")) {
-		if(strcmp(argv[]))
-		if(argc < 4) {
-			printf("Args err.\n"); 
-			return 0;
-		}
-		
-		int len = 0;
-		
-		/*int i = 3;
-		while(i < argc) {
-			len += strlen(argv[i]);
-			i++;
-		}
-		char ** URLset = malloc(sizeof(char) * (argc - 3) * (len + argc - 3); //______________________________________________________Malloc Errors possible
-		
-		WebCrawler crawler = new WebCrawler(atoi(argv[2]),, )
-			
-		while()
-		char ** urlSet = argv;
-		*urlSet += 3;
-		
-		WebCrawler wCrawler = new WebCrawler()
-	}
-	 else {
-	 	if(argc < 3) {
-	 		printf("args err.\n");
-	 		return 0;
-	 	}
-	 	
-	 }*/
+
 	  const char ** urlSet = argv;
 		urlSet += 1;
 		int maxURLs = 50;
