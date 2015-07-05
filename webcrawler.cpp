@@ -82,7 +82,7 @@ WebCrawler::onContentFound(char character) {
 	if(character == '+') {
 
 		_urlArray[_headURL]._description = strdup(desc);
-		strcpy(desc, "");
+		memset(desc,0,strlen(desc));
 	}
 	return;
 }
