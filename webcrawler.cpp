@@ -34,10 +34,6 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 }
 
 
-WebCrawler::InsertIntoURLtoURL(HashTableTemplate<int> * _urlToUrlRecord, int urlIndex, char * url) {
-	_urlToUrlRecord->insertItem(url, urlIndex);	
-}
-
 void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
@@ -208,13 +204,13 @@ char * WebCrawler::removeNextLn(char * description) {
 	return desc_cpy_start;
 }
 
-void WebCrawler::urlText(FILE * file_name) {
+void WebCrawler::urlText(char * file_name) {
 	FILE * f = fopen(file_name, "w");
 	int i = 0;
 	if(f != NULL) {
 		while(i < _tailURL) {
-			fprintf("%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
-			i++
+			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+			i++;
 		}
 		fclose(f);
 	}	

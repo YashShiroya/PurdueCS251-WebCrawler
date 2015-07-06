@@ -47,7 +47,7 @@ class WebCrawler : public SimpleHTMLParser {
   char * removeNextLn(char * description);
   //Pareser Sublcassing
   void onAnchorFound(char * url);
-  void urlText(FILE * file_name);
+  void urlText(char * file_name);
   void onContentFound(char b);
   
   
