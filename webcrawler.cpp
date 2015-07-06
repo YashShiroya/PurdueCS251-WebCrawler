@@ -93,6 +93,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			
 			//Adding to URLtoURLRecord
 			printf("Relative: Above insert\n");
+			printf("urlcat %s\n", urlcat);
 			_urlToUrlRecord->insertItem(urlcat, _tailURL);
 			printf("Relative: Below insert\n");
 			//Adding to _urlArray	
