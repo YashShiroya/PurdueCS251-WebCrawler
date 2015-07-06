@@ -118,43 +118,19 @@ void WebCrawler::onAnchorFound(char * url) {
 
 void
 WebCrawler::onContentFound(char character) {
+	
 	char c = character;
-	
-	/*if(check < 2) {
-		*_buffer = c;
-		_buffer++;
-		*_buffer = '\0';
-		check++;
-	}
-	
-	
-	if(_buffer[0] == 't' && _buffer[1] == ':') {
-		*buffer_t = c;
-		buffer_t++;
-		*buffer_t = '\0';
-		
-		if(character == '`') {
-			buffer_t_p[strlen(buffer_t_p) - 1] = '\0';
-			_urlArray[_headURL]._description = strdup(buffer_t_p);
-			buffer_t = buffer_t_p;
-		}
-	}
-	//else if(_buffer[0] == 'm' && buffer[1] == ':') {
-		
-	//}
-	
-	*/
 	*description = c;
 	description++;
 	*description = '\0';
 
-	if(character == '`') {
+	if(character == '+') {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
 		description = desc;
 	}
-	
-	return;
+	return;	
+		
 }
 
 void WebCrawler::crawl() {

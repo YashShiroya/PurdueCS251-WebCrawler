@@ -7,9 +7,6 @@ SimpleHTMLParser::SimpleHTMLParser()
 {
 }
 
-int onceTitle = 0;
-int onceMeta = 0;
-
 bool
 SimpleHTMLParser::match(char **b, const char *m) {
 	int len = strlen(m);
@@ -50,9 +47,6 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<TITLE>")) {
 				state = TITLE;
 			}
-			//else if (match(&b, "<META ")) {
-			//	state = META;
-			//}
 			else if	(match(&b,"<")) {
 				state = TAG;
 			}
@@ -201,3 +195,4 @@ SimpleHTMLParser::onContentFound(char c) {
 void
 SimpleHTMLParser::onAnchorFound(char * url) {
 }
+
