@@ -14,6 +14,9 @@ char * buffer_t_p = buffer_t;
 char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
+char * description = (char*) malloc(500);
+char * desc = description;
+
 int check = 0;
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
@@ -117,12 +120,7 @@ void
 WebCrawler::onContentFound(char character) {
 	char c = character;
 	
-	if(c == '~' || c == '`') {
-		check = 0;
-		_buffer = strdup("");
-	}
-	
-	if(check < 2) {
+	/*if(check < 2) {
 		*_buffer = c;
 		_buffer++;
 		*_buffer = '\0';
@@ -145,7 +143,7 @@ WebCrawler::onContentFound(char character) {
 		
 	//}
 	
-	/*
+	*/
 	*description = c;
 	description++;
 	*description = '\0';
@@ -154,7 +152,7 @@ WebCrawler::onContentFound(char character) {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
 		description = desc;
-	}*/
+	}
 	
 	return;
 }

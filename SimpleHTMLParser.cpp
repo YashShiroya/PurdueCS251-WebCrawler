@@ -80,38 +80,15 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		case TITLE: {
 			if (match(&b,"</TITLE>")) {
 				// End script
-				onContentFound('`');
-				onceTitle = 0;
+				onContentFound('+');
+				
 				state = START;
 			}
 			else {
-				if(onceTitle = 0) {
-					onContentFound('t');
-					onContentFound(':');
-					onceTitle = 1;
-				} else {
-					onContentFound(*b);
-					b++;
-				}
+				onContentFound(*b);
+				b++;
 			}
 			break;
-		}
-		case META: {
-			if(match(&b, ">")) {
-				onContentFound('~');
-				onceMeta = 0;
-				state = START;
-			}
-			else {
-				if(onceMeta = 0) {
-					onContentFound('m');
-					onContentFound(':');
-					onceMeta = 1;
-				} else {
-					onContentFound(*b);
-					b++;
-				}
-			}
 		}
 		//____________________________________________________________
 		case ANCHOR: {
