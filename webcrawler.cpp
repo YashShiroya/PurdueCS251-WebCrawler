@@ -27,7 +27,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
     
   for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
-  	_urlArray[i]._description = strdup(NULL);
+  	_urlArray[i]._description = strdup("default");
   	*init++;
   }
  
@@ -39,7 +39,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
 	char * domain = strdup(_urlArray[_headURL]._url);
-	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
+	char * urlcat;// = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	char * urlcase = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	
 	strcpy(urlcat, "");
