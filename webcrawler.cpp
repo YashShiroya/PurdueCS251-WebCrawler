@@ -56,7 +56,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			//Adding to URLtoURLRecord
 			
 			//printf("Absolute: Above insert\n");
-			//_urlToUrlRecord->insertItem(urlcase, _tailURL);
+			_urlToUrlRecord->insertItem(urlcase, _tailURL);
 			//printf("Absolute: Below insert\n");
 			//Adding to _urlArray
 			_urlArray[_tailURL]._url = strdup(urlcase);
@@ -93,7 +93,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			
 			//Adding to URLtoURLRecord
 			//printf("Relative: Above insert\n");
-			//_urlToUrlRecord->insertItem(urlcat, _tailURL);
+			_urlToUrlRecord->insertItem(urlcat, _tailURL);
 			//printf("Relative: Below insert\n");
 			
 			//Adding to _urlArray	
