@@ -7,6 +7,9 @@ SimpleHTMLParser::SimpleHTMLParser()
 {
 }
 
+int onceTitle = 0;
+int onceMeta = 0;
+
 bool
 SimpleHTMLParser::match(char **b, const char *m) {
 	int len = strlen(m);
@@ -47,6 +50,9 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<TITLE>")) {
 				state = TITLE;
 			}
+			else if (match(&b, "<META ")) {
+				state = META;
+			}
 			else if	(match(&b,"<")) {
 				state = TAG;
 			}
@@ -74,15 +80,38 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		case TITLE: {
 			if (match(&b,"</TITLE>")) {
 				// End script
-				onContentFound('+');
-				
+				onContentFound('`');
+				onceTitle = 0;
 				state = START;
 			}
 			else {
-				onContentFound(*b);
-				b++;
+				if(onceTitle = 0) {
+					onContentFound('t');
+					onContentFound(':');
+					onceTitle = 1;
+				} else {
+					onContentFound(*b);
+					b++;
+				}
 			}
 			break;
+		}
+		case META: {
+			if(match(&b, ">")) {
+				onContentFound('~');
+				onceMeta = 0;
+				state = START;
+			}
+			else {
+				if(onceMeta = 0) {
+					onContentFound('m');
+					onContentFound(':');
+					onceMeta = 1;
+				} else {
+					onContentFound(*b);
+					b++;
+				}
+			}
 		}
 		//____________________________________________________________
 		case ANCHOR: {
