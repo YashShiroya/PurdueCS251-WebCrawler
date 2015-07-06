@@ -54,7 +54,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			else strcat(urlcase,m);
 			//Adding to URLtoURLRecord
 			
-			_urlToUrlRecord->insertItem(urlcase, _tailURL);
+			//_urlToUrlRecord->insertItem(urlcase, _tailURL);
 			
 			//Adding to _urlArray
 			_urlArray[_tailURL]._url = strdup(urlcase);
@@ -91,7 +91,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			
 			//Adding to URLtoURLRecord
 			
-			_urlToUrlRecord->insertItem(urlcat, _tailURL);
+			//_urlToUrlRecord->insertItem(urlcat, _tailURL);
 			
 			//Adding to _urlArray	
 			_urlArray[_tailURL]._url = strdup(urlcat);
@@ -194,7 +194,7 @@ void WebCrawler::setTail(int tail) {_tailURL = tail;}
 
 char * WebCrawler::removeNextLn(char * description) {
 	char * d = description;
-	char * desc_cpy = (char*) malloc(strlen(description));
+	char * desc_cpy = (char*) malloc(strlen(description) + 10);
 	strcpy(desc_cpy, "");
 	char * desc_cpy_start = desc_cpy;
 	while(d) {
@@ -213,7 +213,7 @@ void WebCrawler::urlText(char * file_name) {
 	int i = 0;
 	if(f != NULL) {
 		while(i < _tailURL) {
-			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , _urlArray[i]._description);
+			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
 			i++;
 		}
 		fclose(f);
