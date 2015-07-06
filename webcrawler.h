@@ -49,7 +49,7 @@ class WebCrawler : public SimpleHTMLParser {
   void onAnchorFound(char * url);
   void urlText(char * file_name);
   void onContentFound(char b);
-  
+  void setDescDefault();
   
   
   //bool parse(char * buffer, int n);

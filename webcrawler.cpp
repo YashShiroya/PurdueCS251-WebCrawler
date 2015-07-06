@@ -109,11 +109,7 @@ WebCrawler::onContentFound(char character) {
 	*description = c;
 	description++;
 	*description = '\0';
-	int i = 0;
-	while(i < _tailURL) {
-		_urlArray[i]._description = strdup("<TITLE EMPTY>");
-		i++;
-	}
+
 	if(character == '+') {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
@@ -192,6 +188,13 @@ void WebCrawler::setNull(char * str) {
 	}
 }
 
+void WebCrawler::setDescDefault() {
+	int i = 0;
+	while(i < _tailURL) {
+		_urlArray[i]._description = strdup("<TITLE EMPTY>");
+		i++;
+	}
+}
 
 int WebCrawler::getTail() { return _tailURL;}
 
@@ -238,8 +241,10 @@ int main(int argc, const char ** argv) {
 		printf("urlSet %s\n", *urlSet);
 		
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+		int i = 0;
 		
 		//wCrawler->setTail(argc - 1);
+		wCrawler->setDescDefault();
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
 		wCrawler->urlText(url_file);
