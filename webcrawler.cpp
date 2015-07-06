@@ -217,7 +217,7 @@ void WebCrawler::urlText(char * file_name) {
 	if(f != NULL) {
 		while(i < _tailURL) {
 		
-			if((_urlArray[i]._description) == NULL) fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , "<TITLE IS NULL>");
+			if((_urlArray[i]._description) == NULL) fprintf(f,"%d %s\n%s\n\n",i + 1 ,_urlArray[i]._url , "<TITLE IS NULL>");
 				
 			else fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
 			
