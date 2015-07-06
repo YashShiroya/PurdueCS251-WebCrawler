@@ -231,7 +231,7 @@ int main(int argc, const char ** argv) {
 		//wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
-		wCrawler->urlText(url_file);
+		//wCrawler->urlText(url_file);
 		wCrawler->printArray();
 		
 	return 0;
