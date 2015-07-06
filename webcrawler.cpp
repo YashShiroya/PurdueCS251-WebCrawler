@@ -10,6 +10,29 @@
 char * description = (char*) malloc(500);
 char * desc = description;
 
+WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
+{
+  // Allocate space for _urlArray
+  // insert the initialURls
+  // Update _maxUrls, _headURL and _tailURL
+  
+  _urlArray = new URLRecord[maxURLs]; //nInitialURLs later
+  _maxURLs = maxURLs;
+  _headURL = 0;
+  _tailURL = nInitialURLs;
+  const char ** init = initialURLs;
+  strcpy(description, "");
+  
+    
+  for(int i = 0; i < nInitialURLs; i++) {
+  	_urlArray[i]._url = strdup(*init);
+  	_urlArray[i]._description = strdup("default");
+  	*init++;
+  }
+ 
+  
+}
+
 void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
@@ -72,16 +95,6 @@ void WebCrawler::onAnchorFound(char * url) {
 		
 }
 
-void WebCrawler::setNull(char * str) {
-	int len = strlen(str);
-	char * s = str;
-	for(int i = 0; i < len; i++) {
-		*s = '\0';
-		s++;
-	}
-}
-
-
 void
 WebCrawler::onContentFound(char character) {
 	char c = character;
@@ -94,53 +107,6 @@ WebCrawler::onContentFound(char character) {
 		description = desc;
 	}
 	return;
-}
-
-bool WebCrawler::findArray(char * url) {		
-	int n1, n2;
-	for(int i = 0; i < _tailURL; i++) {
-		char * givenURL = strdup(url);
-		char * AtIndex = strdup(_urlArray[i]._url);
-		if(strcmp(givenURL, AtIndex) == 0) {
-			return true;
-		}
-	}
-	return false;
-}
-
-
-WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
-{
-  // Allocate space for _urlArray
-  // insert the initialURls
-  // Update _maxUrls, _headURL and _tailURL
-  
-  _urlArray = new URLRecord[maxURLs]; //nInitialURLs later
-  _maxURLs = maxURLs;
-  _headURL = 0;
-  _tailURL = nInitialURLs;
-  const char ** init = initialURLs;
-  strcpy(description, "");
-  
-    
-  for(int i = 0; i < nInitialURLs; i++) {
-  	_urlArray[i]._url = strdup(*init);
-  	_urlArray[i]._description = strdup("default");
-  	*init++;
-  }
- 
-  
-}
-
-int WebCrawler::getTail() { return _tailURL;}
-
-void WebCrawler::setTail(int tail) {_tailURL = tail;}
-
-void WebCrawler::printArray() {
-	printf("URL Array:\n");
-	for(int i = 0; i < getTail(); i++) {
-		printf("%d._____\nURL: %s\nDISC:%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._description);
-	}
 }
 
 void WebCrawler::crawl() {
@@ -167,7 +133,6 @@ void WebCrawler::crawl() {
      
 
           //continue;
-
     /*Get the first 100 characters (at most) of the document without tags. Add this 
        description to theURL record for this URL.
 
@@ -183,11 +148,50 @@ void WebCrawler::crawl() {
 }
 
 
+bool WebCrawler::findArray(char * url) {		
+	int n1, n2;
+	for(int i = 0; i < _tailURL; i++) {
+		char * givenURL = strdup(url);
+		char * AtIndex = strdup(_urlArray[i]._url);
+		if(strcmp(givenURL, AtIndex) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void WebCrawler::printArray() {
+	printf("URL Array:\n");
+	for(int i = 0; i < getTail(); i++) {
+		printf("%d._____\nURL: %s\nDISC:%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._description);
+	}
+}
+
+
+
+void WebCrawler::setNull(char * str) {
+	int len = strlen(str);
+	char * s = str;
+	for(int i = 0; i < len; i++) {
+		*s = '\0';
+		s++;
+	}
+}
+
+
+int WebCrawler::getTail() { return _tailURL;}
+
+void WebCrawler::setTail(int tail) {_tailURL = tail;}
+
+
+
+
+
 int main(int argc, const char ** argv) { 
 
 	  const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 1000;
+		int maxURLs = 10;
 		
 		printf("urlSet %s\n", *urlSet);
 		
