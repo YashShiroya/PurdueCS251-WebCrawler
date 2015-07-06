@@ -209,7 +209,7 @@ void WebCrawler::urlText(char * file_name) {
 	int i = 0;
 	if(f != NULL) {
 		while(i < _tailURL) {
-			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , _urlArray[i]._description);
 			i++;
 		}
 		fclose(f);
@@ -231,7 +231,7 @@ int main(int argc, const char ** argv) {
 		//wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
-		//wCrawler->urlText(url_file);
+		wCrawler->urlText(url_file);
 		wCrawler->printArray();
 		
 	return 0;
