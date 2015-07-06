@@ -33,7 +33,6 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		switch (state) {
 		case START: {
 			if (match(&b,"<SCRIPT")) {
-				printf("entered script\n");
 				state = SCRIPT;
 			}
 			else if (match(&b,"<!--")) {
