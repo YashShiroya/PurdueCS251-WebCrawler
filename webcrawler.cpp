@@ -188,13 +188,6 @@ void WebCrawler::setNull(char * str) {
 	}
 }
 
-void WebCrawler::setDescDefault() {
-	int i = 0;
-	while(i < _tailURL) {
-		_urlArray[i]._description = strdup("<TITLE EMPTY>");
-		i++;
-	}
-}
 
 int WebCrawler::getTail() { return _tailURL;}
 
@@ -223,8 +216,13 @@ void WebCrawler::urlText(char * file_name) {
 	int i = 0;
 	if(f != NULL) {
 		while(i < _tailURL) {
-			fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+		
+			if((_urlArray[i]._description) == NULL) fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , "<TITLE IS NULL>");
+				
+			else fprintf(f,"%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+			
 			i++;
+			
 		}
 		fclose(f);
 	}	
@@ -244,7 +242,6 @@ int main(int argc, const char ** argv) {
 		int i = 0;
 		
 		//wCrawler->setTail(argc - 1);
-		wCrawler->setDescDefault();
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
 		wCrawler->urlText(url_file);
