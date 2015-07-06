@@ -129,7 +129,7 @@ void WebCrawler::crawl() {
     
     //Fetch the next URL in _headURL
 
-	char * buffer = fetchHTML(NULL, &n);//_urlArray[_headURL]._url, &n);
+	char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
 	
 	if (buffer == NULL) {
 		  fprintf(stderr, "*** Cannot open URL\n");	  
