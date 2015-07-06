@@ -24,6 +24,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   strcpy(description, "");
   
   _urlToUrlRecord = new HashTableTemplate<int>();
+  //_iterator = new HashTableTemplateIterator<Data>();
     
   for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
@@ -156,8 +157,7 @@ void WebCrawler::crawl() {
 
     For each word in the document without tags, add the index of this URL to
       a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
-  }//while
-}
+  }//while}
 
 
 bool WebCrawler::findArray(char * url) {		

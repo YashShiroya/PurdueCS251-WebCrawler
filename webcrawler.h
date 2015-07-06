@@ -29,6 +29,8 @@ class WebCrawler : public SimpleHTMLParser {
 
   HashTableTemplate<int> * _urlToUrlRecord;         //  maps a URL to its index in the URLArray 
   
+  //HashTableTemplateIterator<Data> * _iterator;
+  
   HashTableTemplate<URLRecordList *> *_wordToURLRecordList; // maps a word to a list of URLs
 
  public:
