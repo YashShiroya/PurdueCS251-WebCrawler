@@ -72,7 +72,7 @@ template <typename Data>
 bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
 {
   // Add implementation here
-  int h = hash(key);
+  /*int h = hash(key);
   HashTableTemplateEntry<Data> * e = _buckets[h];
   
   while(e != NULL) {
@@ -89,7 +89,28 @@ bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
   e->_next = _buckets[h];
   _buckets[h] = e;
   
-  return false;
+  return false;*/
+  
+  int h = hash(key);
+
+    HashTableTemplateEntry<Data> * e = _buckets[h];
+    while (e!=NULL) {
+        if (!strcmp(e->_key, key)) {
+            // Entry found
+            e->_data = data;
+            return true;
+        }
+        e = e->_next;
+    }
+
+    // Entry not found. Add it.
+    e = new HashTableTemplateEntry<Data>;
+    e->_key = strdup(key);
+    e->_data = data;
+    e->_next = _buckets[h];
+    _buckets[h] = e;
+    return false;
+  
 }
 
 template <typename Data>

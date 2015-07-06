@@ -23,7 +23,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   const char ** init = initialURLs;
   strcpy(description, "");
   
-  HashTableTemplate<int> * _urlToUrlRecord = new HashTableTemplate<int>();
+  _urlToUrlRecord = new HashTableTemplate<int>();
     
   for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
@@ -55,16 +55,16 @@ void WebCrawler::onAnchorFound(char * url) {
 			else strcat(urlcase,m);
 			//Adding to URLtoURLRecord
 			
-			printf("Absolute: Above insert\n");
-			_urlToUrlRecord->insertItem(urlcase, _tailURL);
-			printf("Absolute: Below insert\n");
+			//printf("Absolute: Above insert\n");
+			//_urlToUrlRecord->insertItem(urlcase, _tailURL);
+			//printf("Absolute: Below insert\n");
 			//Adding to _urlArray
 			_urlArray[_tailURL]._url = strdup(urlcase);
 			_tailURL++;
 		
 		}
 	
-		/*else {
+		else {
 			
 			if(url[0] == '/' && url[1] == '/') return;
 			
@@ -92,15 +92,15 @@ void WebCrawler::onAnchorFound(char * url) {
 			if(findArray(urlcat)) return;
 			
 			//Adding to URLtoURLRecord
-			printf("Relative: Above insert\n");
-			_urlToUrlRecord->insertItem(urlcat, _tailURL);
-			printf("Relative: Below insert\n");
+			//printf("Relative: Above insert\n");
+			//_urlToUrlRecord->insertItem(urlcat, _tailURL);
+			//printf("Relative: Below insert\n");
 			
 			//Adding to _urlArray	
 			_urlArray[_tailURL]._url = strdup(urlcat);
 			_tailURL++;
 	
-		}*/
+		}
 	}
 	return;
 		
