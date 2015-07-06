@@ -1,4 +1,3 @@
-
 #include "webcrawler.h"
 #include <stdio.h>
 #include <string.h>
@@ -7,8 +6,13 @@
 #include "SimpleHTMLParser.h"
 
 // Add your implementation here
-char * description = (char*) malloc(500);
-char * desc = description;
+char * _buffer = (char*) malloc(50);
+
+char * buffer_t = (char*) malloc(500);
+char * buffer_t_p = buffer_t;
+
+char * buffer_m = (char*) malloc(500);
+char * buffer_m_p = buffer_m;
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
@@ -21,7 +25,8 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   _headURL = 0;
   _tailURL = nInitialURLs;
   const char ** init = initialURLs;
-  strcpy(description, "");
+  strcpy(_buffer_t, "");
+  strcpy(_buffer_m, "");
   
   _urlToUrlRecord = new HashTableTemplate<int>();
     
@@ -109,15 +114,46 @@ void WebCrawler::onAnchorFound(char * url) {
 void
 WebCrawler::onContentFound(char character) {
 	char c = character;
+	
+	if(c == '~' || c == '`') {
+		check = 0;
+		_buffer = strdup("");
+	}
+	
+	if(check < 2) {
+		*_buffer = c;
+		_buffer++;
+		*_buffer = '\0';
+		check++;
+	}
+	
+	
+	if(_bufer[0] == 't' && _buffer[1] == ':') {
+		*buffer_t_p = c;
+		buffer_t_p++;
+		*buffer_t_p = '\0';
+		
+		if(character == '`') {
+			buffer_t[strlen(buffer_t) - 1] = '\0';
+			_urlArray[_headURL]._description = strdup(buffer_t);
+			buffer_t_p = desc;
+		}
+	}
+	//else if(_buffer[0] == 'm' && buffer[1] == ':') {
+		
+	//}
+	
+	/*
 	*description = c;
 	description++;
 	*description = '\0';
 
-	if(character == '`' || character == '~') {
+	if(character == '`') {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
 		description = desc;
-	}
+	}*/
+	
 	return;
 }
 
