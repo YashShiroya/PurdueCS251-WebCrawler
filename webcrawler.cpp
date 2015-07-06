@@ -131,14 +131,14 @@ WebCrawler::onContentFound(char character) {
 	
 	
 	if(_buffer[0] == 't' && _buffer[1] == ':') {
-		*buffer_t_p = c;
-		buffer_t_p++;
-		*buffer_t_p = '\0';
+		*buffer_t = c;
+		buffer_t++;
+		*buffer_t = '\0';
 		
 		if(character == '`') {
-			buffer_t[strlen(buffer_t) - 1] = '\0';
-			_urlArray[_headURL]._description = strdup(buffer_t);
-			buffer_t_p = buffer_t;
+			buffer_t_p[strlen(buffer_t_p) - 1] = '\0';
+			_urlArray[_headURL]._description = strdup(buffer_t_p);
+			buffer_t = buffer_t_p;
 		}
 	}
 	//else if(_buffer[0] == 'm' && buffer[1] == ':') {
