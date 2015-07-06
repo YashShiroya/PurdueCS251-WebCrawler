@@ -23,6 +23,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   const char ** init = initialURLs;
   strcpy(description, "");
   
+  HashTableTemplate<int> * _urlToUrlRecord = new HashTableTemplate<int>();
     
   for(int i = 0; i < nInitialURLs; i++) {
   	_urlArray[i]._url = strdup(*init);
