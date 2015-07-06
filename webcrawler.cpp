@@ -14,6 +14,8 @@ char * buffer_t_p = buffer_t;
 char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
+int check = 0;
+
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
   // Allocate space for _urlArray
@@ -25,8 +27,8 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   _headURL = 0;
   _tailURL = nInitialURLs;
   const char ** init = initialURLs;
-  strcpy(_buffer_t, "");
-  strcpy(_buffer_m, "");
+  strcpy(buffer_t, "");
+  strcpy(buffer_m, "");
   
   _urlToUrlRecord = new HashTableTemplate<int>();
     
@@ -128,7 +130,7 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	
-	if(_bufer[0] == 't' && _buffer[1] == ':') {
+	if(_buffer[0] == 't' && _buffer[1] == ':') {
 		*buffer_t_p = c;
 		buffer_t_p++;
 		*buffer_t_p = '\0';
@@ -136,7 +138,7 @@ WebCrawler::onContentFound(char character) {
 		if(character == '`') {
 			buffer_t[strlen(buffer_t) - 1] = '\0';
 			_urlArray[_headURL]._description = strdup(buffer_t);
-			buffer_t_p = desc;
+			buffer_t_p = buffer_t;
 		}
 	}
 	//else if(_buffer[0] == 'm' && buffer[1] == ':') {
