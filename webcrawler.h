@@ -5,6 +5,8 @@
 #include "openhttp.h"
 #include "SimpleHTMLParser.h"
 
+#define url_file "url.txt"
+
 // Stores a URL and the first 100 words
 struct URLRecord {
   char * _url;          // URL of the document.
@@ -42,10 +44,10 @@ class WebCrawler : public SimpleHTMLParser {
   void setTail(int tail);
   void printArray();
   void setNull(char * str);
-  
+  char * removeNextLn(char * description);
   //Pareser Sublcassing
   void onAnchorFound(char * url);
-  
+  void urlText(FILE * file_name);
   void onContentFound(char b);
   
   

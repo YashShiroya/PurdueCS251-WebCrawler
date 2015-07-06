@@ -33,6 +33,11 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   
 }
 
+
+WebCrawler::InsertIntoURLtoURL(HashTableTemplate<int> * _urlToUrlRecord, int urlIndex, char * url) {
+	_urlToUrlRecord->insertItem(url, urlIndex);	
+}
+
 void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
@@ -51,9 +56,10 @@ void WebCrawler::onAnchorFound(char * url) {
 			if(findArray(url)) return;
 						
 			else strcat(urlcase,m);
-			
+			//Adding to URLtoURLRecord
+			_urlToUrlRecord->insertItem(urlcase, _tailURL);
+			//Adding to _urlArray
 			_urlArray[_tailURL]._url = strdup(urlcase);
-			_urlArray[_tailURL]._description = strdup("default");
 			_tailURL++;
 		
 		}
@@ -84,9 +90,11 @@ void WebCrawler::onAnchorFound(char * url) {
 	
 		
 			if(findArray(urlcat)) return;
-		
+			
+			//Adding to URLtoURLRecord
+			_urlToUrlRecord->insertItem(urlcat, _tailURL);
+			//Adding to _urlArray	
 			_urlArray[_tailURL]._url = strdup(urlcat);
-			_urlArray[_tailURL]._description = strdup("default");
 			_tailURL++;
 	
 		}
@@ -116,7 +124,7 @@ void WebCrawler::crawl() {
   while (_headURL < _tailURL) {
     
     //Fetch the next URL in _headURL
-	
+
 	char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
 	
 	if (buffer == NULL) {
@@ -160,6 +168,7 @@ bool WebCrawler::findArray(char * url) {
 	return false;
 }
 
+
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
 	for(int i = 0; i < getTail(); i++) {
@@ -183,12 +192,38 @@ int WebCrawler::getTail() { return _tailURL;}
 
 void WebCrawler::setTail(int tail) {_tailURL = tail;}
 
+char * WebCrawler::removeNextLn(char * description) {
+	char * d = description;
+	char * desc_cpy = (char*) malloc(strlen(description));
+	strcpy(desc_cpy, "");
+	char * desc_cpy_start = desc_cpy;
+	while(d) {
+		if(*d != '\n') {
+			*desc_cpy = *d;
+			desc_cpy++;
+		}
+		d++;	
+	}
+	desc_cpy = '\0';
+	return desc_cpy_start;
+}
 
-
+void WebCrawler::urlText(FILE * file_name) {
+	FILE * f = fopen(file_name, "w");
+	int i = 0;
+	if(f != NULL) {
+		while(i < _tailURL) {
+			fprintf("%d %s\n%s\n\n",i ,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+			i++
+		}
+		fclose(f);
+	}	
+	else return;
+}
 
 
 int main(int argc, const char ** argv) { 
-
+	
 	  const char ** urlSet = argv;
 		urlSet += 1;
 		int maxURLs = 10;
@@ -200,6 +235,7 @@ int main(int argc, const char ** argv) {
 		//wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
 		printf("tail %d", wCrawler->getTail());
+		wCrawler->urlText(url_file);
 		wCrawler->printArray();
 		
 	return 0;
