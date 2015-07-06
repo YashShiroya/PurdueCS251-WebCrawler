@@ -109,6 +109,11 @@ WebCrawler::onContentFound(char character) {
 	*description = c;
 	description++;
 	*description = '\0';
+	int i = 0;
+	while(i < _tailURL) {
+		_urlArray[i]._description = strdup("<TITLE EMPTY>");
+		i++;
+	}
 	if(character == '+') {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
