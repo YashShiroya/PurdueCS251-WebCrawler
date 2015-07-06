@@ -39,7 +39,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 	char * m = strdup(url);
 	char * domain = strdup(_urlArray[_headURL]._url);
-	char * urlcat;// = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
+	char * urlcat = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	char * urlcase = (char*) malloc(sizeof(char) * (strlen(url) + strlen(domain) + 100));
 	
 	strcpy(urlcat, "");
@@ -129,7 +129,7 @@ void WebCrawler::crawl() {
     
     //Fetch the next URL in _headURL
 
-	char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
+	char * buffer = fetchHTML(NULL, &n);//_urlArray[_headURL]._url, &n);
 	
 	if (buffer == NULL) {
 		  fprintf(stderr, "*** Cannot open URL\n");	  
