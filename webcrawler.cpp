@@ -54,7 +54,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			else strcat(urlcase,m);
 			//Adding to URLtoURLRecord
 			
-			//_urlToUrlRecord->insertItem(urlcase, _tailURL);
+			_urlToUrlRecord->insertItem(urlcase, _tailURL);
 			
 			//Adding to _urlArray
 			_urlArray[_tailURL]._url = strdup(urlcase);
@@ -91,7 +91,7 @@ void WebCrawler::onAnchorFound(char * url) {
 			
 			//Adding to URLtoURLRecord
 			
-			//_urlToUrlRecord->insertItem(urlcat, _tailURL);
+			_urlToUrlRecord->insertItem(urlcat, _tailURL);
 			
 			//Adding to _urlArray	
 			_urlArray[_tailURL]._url = strdup(urlcat);
