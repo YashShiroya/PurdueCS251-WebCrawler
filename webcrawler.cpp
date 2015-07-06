@@ -197,7 +197,7 @@ char * WebCrawler::removeNextLn(char * description) {
 	char * desc_cpy = (char*) malloc(strlen(description) + 10);
 	strcpy(desc_cpy, "");
 	char * desc_cpy_start = desc_cpy;
-	while(d) {
+	while(*d) {
 		if(*d != '\n') {
 			*desc_cpy = *d;
 			desc_cpy++;
