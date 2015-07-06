@@ -115,8 +115,8 @@ WebCrawler::onContentFound(char character) {
 
 	if(character == '+') {
 		desc[strlen(desc) - 1] = '\0';
-		if(desc == NULL) _urlArray[_headURL]._description = strdup("<TITLE NOT DETECTED>");
-		//else _urlArray[_headURL]._description = strdup(desc);
+		if(*desc = '\0') _urlArray[_headURL]._description = strdup("<TITLE NOT DETECTED>");
+		else _urlArray[_headURL]._description = strdup(desc);
 		description = desc;
 	}
 	return;
