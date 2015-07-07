@@ -58,9 +58,9 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				state = KEYWORDS;
 			}
 			
-			else if	(match(&b, "<META CONTENT=\"")) {
+			/*else if	(match(&b, "<META CONTENT=\"")) {
 				state = CONTENT;
-			}
+			}*/
 			//else if	(match(&b, "<META KEYWORDS=")) {
 			//	state = META-KEYWORDS;
 			//}
