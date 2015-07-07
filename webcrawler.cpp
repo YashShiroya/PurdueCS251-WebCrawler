@@ -9,13 +9,13 @@
 char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_t = (char*) malloc(500);
-char * buffer_t_p = buffer_t;
+char * buffer_k = (char*) malloc(5000);
+char * buffer_k_p = buffer_k;
 
 char * buffer_m = (char*) malloc(5000);
 char * buffer_m_p = buffer_m;
 
-char * description = (char*) malloc(500);
+char * description = (char*) malloc(10000);
 char * desc = description;
 
 int check = 0;
@@ -31,7 +31,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
   _headURL = 0;
   _tailURL = nInitialURLs;
   const char ** init = initialURLs;
-  strcpy(buffer_t, "");
+  strcpy(buffer_k, "");
   strcpy(buffer_m, "");
   
   _urlToUrlRecord = new HashTableTemplate<int>();
@@ -127,12 +127,23 @@ WebCrawler::onContentFound(char character) {
 	*_buffer = c;								//___________description = _buffer, desc = buffer_start
 	_buffer++;
 	*_buffer = '\0';
-
+	strcpy(buffer_m,"");
 	
 	if(character == '[') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-		buffer_m = strdup(buffer_start);
-		_urlArray[_headURL]._description = strdup(buffer_m);
+		strcpy(buffer_m,"");
+		strcat(buffer_m,"Description:");
+		strcat(buffer_m,buffer_start);
+		strcat(buffer_m,"\n");
+		//_urlArray[_headURL]._description = strdup(buffer_m);
+		_buffer = buffer_start;
+	}
+	if(character == ']') {
+		strcpy(buffer_k,"");
+		strcat(buffer_k,"Keywords:");
+		strcat(buffer_k,buffer_start);
+		strcat(buffer_k,"\n");
+		//_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
 	if(character == '_') {
@@ -140,6 +151,18 @@ WebCrawler::onContentFound(char character) {
 		memset (_buffer,'\0',strlen(_buffer));
 		_buffer = buffer_start;
 	}
+	
+	if(buffer_m == NULL || strlen(buffer_m) == 0) {
+		strcpy(buffer_m,"");
+	}
+	
+	if(buffer_k == NULL || strlen(buffer_k) == 0) {
+		strcpy(buffer_m,"");
+	}
+	
+	strcat(description, buffer_m);
+	strcat(description, buffer_k);
+	_urlArray[_headURL]._description = strdup(description);	
 	return;	
 		
 }
