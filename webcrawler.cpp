@@ -171,9 +171,11 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	
-
-	_urlArray[_headURL]._description = strdup(description); 	
-	//memset (description,'\0',strlen(description));
+	if(strlen(description) != 0) {
+	
+		_urlArray[_headURL]._description = strdup(description); 	
+		memset (description,'\0',strlen(description));
+	}
 	
 	return;	
 		
