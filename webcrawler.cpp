@@ -128,7 +128,7 @@ WebCrawler::onContentFound(char character) {
 	_buffer++;
 	*_buffer = '\0';
 	strcpy(buffer_m,"");
-	strcpy(buffer_k,"");
+	//strcpy(buffer_k,"");
 	
 	if(character == '[') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
