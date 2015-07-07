@@ -1,7 +1,6 @@
 
 #include "SimpleHTMLParser.h"
 #include "openhttp.h"
-#include <stdlib.h>
 #include <string.h>
 
 SimpleHTMLParser::SimpleHTMLParser()
@@ -27,8 +26,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 	state = START;
 	
 	char * bufferEnd = buffer + n;
-	char * b = (char*) malloc(10000);
-	b = buffer;
+	char * b = buffer;
 	bool lastCharSpace = false;
 	while (b < bufferEnd) {
 		//printf("<%c,%d,%d>", *b, *b,state);
@@ -99,17 +97,18 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			break;
 		}
 		case CONTENT: {
-			if (match(&b," name=\"description\"/>")) {
+			if (match(&b,"name=\"description\"/>")) {
 				// End script
 				onContentFound('[');
 				state = START;
 			}
-			
-			/*else if (match(&b,"name=\"description\"/>")) {
+			else if (match(&b,"name=\"keywords\"/>")) {
 				onContentFound(']');
 				state = START;
-			}*/
-			
+			}
+			else if (match(&b,"/>")) {
+				state = START;
+			}
 			else {
 				onContentFound(*b);
 				b++;
