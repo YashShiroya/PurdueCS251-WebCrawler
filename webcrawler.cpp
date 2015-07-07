@@ -135,7 +135,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
 		strcat(buffer_m,"\n");
-		if(strlen(_urlArray[_headURL]._description) == 0 || _urlArray[_headURL]._description == NULL) {
+		if(strlen(_urlArray[_headURL]._description) == 0) {
 			_urlArray[_headURL]._description = strdup(buffer_m);	
 		}
 		/*else {
@@ -158,7 +158,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_k,buffer_start);
 		strcat(buffer_k,"\n");
 
-		if(strlen(_urlArray[_headURL]._description) == 0 || _urlArray[_headURL]._description == NULL) {
+		if(strlen(_urlArray[_headURL]._description) == 0) {
 			_urlArray[_headURL]._description = strdup(buffer_k);
 		}
 		/*else {
