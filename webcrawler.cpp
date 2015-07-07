@@ -141,7 +141,7 @@ WebCrawler::onContentFound(char character) {
 		else {
 			char * k = (char*) malloc(10000);
 			strcpy(k, "");
-			strcat(k, _urlArray[_headURL]._description);
+			//strcat(k, _urlArray[_headURL]._description);
 			strcat(k, buffer_m);
 			_urlArray[_headURL]._description = strdup(k);
 			memset(k, '\0', strlen(k));
@@ -164,7 +164,7 @@ WebCrawler::onContentFound(char character) {
 		else {
 			char * k = (char*) malloc(10000);
 			strcpy(k, "");
-			strcat(k, _urlArray[_headURL]._description);
+			//strcat(k, _urlArray[_headURL]._description);
 			strcat(k, buffer_k);
 			_urlArray[_headURL]._description = strdup(k);
 			memset(k, '\0', strlen(k));
