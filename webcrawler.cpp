@@ -137,6 +137,8 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_m,"\n");
 		strcat(description, buffer_m);
 		
+		memset (description,'\0',strlen(description));
+		
 		buffer_m = buffer_m_p;
 		_buffer = buffer_start;
 	}
@@ -149,6 +151,8 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_k,buffer_start);
 		strcat(buffer_k,"\n");
 		strcat(description, buffer_k);
+		
+		memset (description,'\0',strlen(description));
 		
 		buffer_k = buffer_k_p;
 		_buffer = buffer_start;
