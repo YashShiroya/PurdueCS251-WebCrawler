@@ -161,7 +161,7 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	
-	strcat(description, buffer_m);
+	//strcat(description, buffer_m);
 	
 	strcat(description, buffer_k);
 	
