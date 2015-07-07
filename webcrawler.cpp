@@ -165,6 +165,9 @@ WebCrawler::onContentFound(char character) {
 	printf("above strcat2\n");
 	strcat(description, buffer_k);
 	printf("above strcat3\n");
+	if(description == NULL) {
+		printf("desc NULL\n");
+	}
 	_urlArray[_headURL]._description = strdup(description);	
 	return;	
 		
