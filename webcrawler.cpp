@@ -135,7 +135,7 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_m,"\n");
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
-		strcat(buffer_m,"\n\n");
+		strcat(buffer_m,"\n");
 		//_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
@@ -143,7 +143,7 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
-		strcat(buffer_k,"\n\n");
+		strcat(buffer_k,"\n");
 		//_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
