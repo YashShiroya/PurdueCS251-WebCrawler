@@ -124,11 +124,12 @@ WebCrawler::onContentFound(char character) {
 	description++;
 	*description = '\0';
 
-	if(character == '+') {
+	if(character == '*') {
 		desc[strlen(desc) - 1] = '\0';
 		_urlArray[_headURL]._description = strdup(desc);
 		description = desc;
 	}
+	
 	return;	
 		
 }
