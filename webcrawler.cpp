@@ -128,7 +128,7 @@ WebCrawler::onContentFound(char character) {
 
 	
 	buffer_start[strlen(buffer_start) - 1] = '\0';
-	if(character == '[') {
+	if(character == '+') {
 		buffer_m = strdup(buffer_start);
 		_urlArray[_headURL]._description = strdup(buffer_m);
 		
