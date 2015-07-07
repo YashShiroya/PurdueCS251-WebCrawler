@@ -139,7 +139,7 @@ WebCrawler::onContentFound(char character) {
 			_urlArray[_headURL]._description = strdup(buffer_m);	
 		}
 		else {
-			char * k = (char*) malloc(5000);
+			char * k = (char*) malloc(10000);
 			strcpy(k, "");
 			strcat(k, _urlArray[_headURL]._description);
 			strcat(k, buffer_m);
@@ -162,7 +162,7 @@ WebCrawler::onContentFound(char character) {
 			_urlArray[_headURL]._description = strdup(buffer_k);
 		}
 		else {
-			char * k = (char*) malloc(5000);
+			char * k = (char*) malloc(10000);
 			strcpy(k, "");
 			strcat(k, _urlArray[_headURL]._description);
 			strcat(k, buffer_k);
@@ -170,7 +170,7 @@ WebCrawler::onContentFound(char character) {
 			memset(k, '\0', strlen(k));
 		}
 
-		//buffer_k = buffer_k_p;
+		buffer_k = buffer_k_p;
 		_buffer = buffer_start;
 	}
 
