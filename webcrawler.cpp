@@ -218,7 +218,7 @@ char * WebCrawler::removeNextLn(char * description) {
 	char * desc_cpy = (char*) malloc(strlen(description) + 10);
 	strcpy(desc_cpy, "a");
 	char * desc_cpy_start = desc_cpy;
-	printf("desc_cpy_start %s\n", desc_cpy_start);
+	//printf("desc_cpy_start %s\n", desc_cpy_start);
 	while(*d) {
 		if(*d != '\n') {
 			*desc_cpy = *d;
@@ -227,7 +227,7 @@ char * WebCrawler::removeNextLn(char * description) {
 		d++;	
 	}
 	desc_cpy = '\0';
-	printf("desc_cpy_start %s\n", desc_cpy_start);
+	//printf("desc_cpy_start %s\n", desc_cpy_start);
 	return desc_cpy_start;
 }
 
