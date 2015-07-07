@@ -15,11 +15,6 @@ char * buffer_k_p = buffer_k;
 char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
-char * description = (char*) malloc(10000);
-char * desc = description;
-
-int check = 0;
-
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
   // Allocate space for _urlArray
@@ -162,12 +157,12 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
+	char * description = (char*) malloc(10000);
+	strcpy(description, "");
 	
 	strcat(description, buffer_m);
-	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
 	strcat(description, buffer_k);
-	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
 	
 	_urlArray[_headURL]._description = strdup(description);	
 	
