@@ -132,18 +132,18 @@ WebCrawler::onContentFound(char character) {
 	
 	if(character == '[') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-		strcpy(buffer_m,"");
+		strcpy(buffer_m,"\n");
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
-		strcat(buffer_m,"\n");
+		strcat(buffer_m,"\n\n");
 		//_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
 	if(character == ']') {
-		strcpy(buffer_k,"");
+		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
-		strcat(buffer_k,"\n");
+		strcat(buffer_k,"\n\n");
 		//_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
