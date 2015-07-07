@@ -162,7 +162,7 @@ WebCrawler::onContentFound(char character) {
 	
 	
 	//strcat(description, buffer_m);
-	
+	printf("buffer_k %s\n", buffer_k);
 	strcat(description, buffer_k);
 	
 	
