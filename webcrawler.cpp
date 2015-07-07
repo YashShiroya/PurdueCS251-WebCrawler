@@ -129,11 +129,14 @@ WebCrawler::onContentFound(char character) {
 	
 	if(character == '[') {
 	buffer_start[strlen(buffer_start) - 1] = '\0';
-		//buffer_m = strdup(buffer_start);
-		_urlArray[_headURL]._description = strdup(buffer_start);
+		buffer_m = strdup(buffer_start);
+		_urlArray[_headURL]._description = strdup(buffer_m);
 		_buffer = buffer_start;
 	}
-	
+	if(character == '_') {
+		memset (buffer_start,'\0',strlen(buffer_start));
+		memset (_buffer,'\0',strlen(_buffer));
+	}
 	return;	
 		
 }
