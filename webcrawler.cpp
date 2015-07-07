@@ -12,7 +12,7 @@ char * buffer_start = _buffer;
 char * buffer_t = (char*) malloc(500);
 char * buffer_t_p = buffer_t;
 
-char * buffer_m = (char*) malloc(500);
+char * buffer_m = (char*) malloc(5000);
 char * buffer_m_p = buffer_m;
 
 char * description = (char*) malloc(500);
@@ -126,12 +126,15 @@ WebCrawler::onContentFound(char character) {
 	_buffer++;
 	*_buffer = '\0';
 
-	if(character == '}') {
-		buffer_start[strlen(buffer_start) - 1] = '\0';
-		_urlArray[_headURL]._description = strdup(buffer_start);
-		_buffer = buffer_start;
-	}
 	
+
+	if(character == ']') {
+		buffer_start[strlen(buffer_start) - 1] = '\0';
+		buffer_m = strdup(buffer_start);
+		_urlArray[_headURL]._description = strdup(buffer_m);
+		
+	}
+	_buffer = buffer_start;
 	return;	
 		
 }

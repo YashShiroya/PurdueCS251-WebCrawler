@@ -44,23 +44,21 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<FRAME ")) {
 				state = FRAME;
 			}
-			//else if (match(&b,"<TITLE>")) {
+			/*else if (match(&b,"<TITLE>")) {
 				//state = TITLE;
-			//}
-			//else if	(match(&b, "<META "CONTENT=)) {
-			//	state = META-CONTENT;
-			//}
-			else if	(match(&b, "<META NAME=\"DESCRIPTION\" CONTENT=\"")) {
+			}
+			
+			/*else if	(match(&b, "<META NAME=\"DESCRIPTION\" CONTENT=\"")) {
 				state = DESCRIPTION;
 			}
 			
 			else if	(match(&b, "<META NAME=\"KEYWORDS\" CONTENT=\"")) {
 				state = KEYWORDS;
-			}
-			
-			/*else if	(match(&b, "<META CONTENT=\"")) {
-				state = CONTENT;
 			}*/
+			
+			else if	(match(&b, "<META CONTENT=\"")) {
+				state = CONTENT;
+			}
 			//else if	(match(&b, "<META KEYWORDS=")) {
 			//	state = META-KEYWORDS;
 			//}
@@ -101,7 +99,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			}
 			break;
 		}
-		/*case CONTENT: {
+		case CONTENT: {
 			if (match(&b,"name=\"keywords\"/>")) {
 				// End script
 				onContentFound('[');
@@ -118,8 +116,8 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				b++;
 			}
 			break;
-		}*/
-		case KEYWORDS: {
+		}
+		/*case KEYWORDS: {
 			if (match(&b,">")) {
 				onContentFound('{');
 				state = START;
@@ -140,7 +138,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				b++;
 			}
 			break; 
-		}
+		}*/
 		//____________________________________________________________
 		case ANCHOR: {
 			if (match(&b,"href=\"")) {
