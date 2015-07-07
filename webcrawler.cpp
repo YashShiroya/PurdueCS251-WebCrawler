@@ -187,7 +187,8 @@ void WebCrawler::crawl() {
 			fprintf(stderr, "*** Cannot open URL\n");	  
 		}
 		else 	parse(buffer, n);
-
+		
+		memset(description, '\0', strlen(description));
 		_headURL++;
 
 
