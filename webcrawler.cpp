@@ -131,6 +131,7 @@ WebCrawler::onContentFound(char character) {
 	buffer_start[strlen(buffer_start) - 1] = '\0';
 		buffer_m = strdup(buffer_start);
 		_urlArray[_headURL]._description = strdup(buffer_m);
+		memset (buffer_start,'&',strlen(buffer_start));
 		_buffer = buffer_start;
 	}
 	
