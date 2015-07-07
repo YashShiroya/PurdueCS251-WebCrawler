@@ -21,7 +21,7 @@ bool
 SimpleHTMLParser::parse(char * buffer, int n)
 {
 	enum { START, TAG, SCRIPT, ANCHOR, HREF,
-	       COMMENT, FRAME, SRC, TITLE, DESCRIPTION } state; //TITLE and META
+	       COMMENT, FRAME, SRC, TITLE, DESCRIPTION, KEYWORDS, CONTENT } state; //TITLE and META
 
 	state = START;
 	
@@ -53,6 +53,12 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if	(match(&b, "<META NAME=\"DESCRIPTION\" CONTENT=\"")) {
 				state = DESCRIPTION;
 			}
+			else if	(match(&b, "<META NAME=\"KEYWORDS\" CONTENT=\"")) {
+				state = KEYWORDS;
+			}
+			else if	(match(&b, "<META CONTENT=\"")) {
+				state = CONTENT;
+			}
 			//else if	(match(&b, "<META KEYWORDS=")) {
 			//	state = META-KEYWORDS;
 			//}
@@ -83,7 +89,36 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		case TITLE: {
 			if (match(&b,"</TITLE>")) {
 				// End script
-				onContentFound('+');
+				onContentFound('*');
+				
+				state = START;
+			}
+			else {
+				onContentFound(*b);
+				b++;
+			}
+			break;
+		}
+		case CONTENT: {
+			if (match(&b,"name=\"description\"/>")) {
+				// End script
+				onContentFound(']');
+				
+				state = START;
+			}
+			else if (match(&b,"name=\"keywords\"/>")) {
+				
+			}
+			else {
+				onContentFound(*b);
+				b++;
+			}
+			break;
+		}
+		case KEYWORDS: {
+			if (match(&b,"/>")) {
+				// End script
+				onContentFound('[');
 				
 				state = START;
 			}
@@ -95,7 +130,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 		}
 		case DESCRIPTION: {
 			if(match(&b, ">")) {
-				onContentFound('*');
+				onContentFound('~');
 				state = START;
 			}
 			else {
