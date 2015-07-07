@@ -136,7 +136,8 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_m,buffer_start);
 		strcat(buffer_m,"\n");
 		if(strlen(_urlArray[_headURL]._description) == 0) {
-		//	_urlArray[_headURL]._description = strdup(buffer_m);	
+			printf("buffer_m %s\n", buffer_m);
+			_urlArray[_headURL]._description = strdup(buffer_m);	
 		}
 		/*else {
 			char * k = (char*) malloc(10000);
