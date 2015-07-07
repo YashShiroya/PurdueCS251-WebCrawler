@@ -152,7 +152,7 @@ WebCrawler::onContentFound(char character) {
 		_buffer = buffer_start;
 	}
 	
-	if(buffer_m == NULL || strlen(buffer_m) == 0) {
+	/*if(buffer_m == NULL || strlen(buffer_m) == 0) {
 		strcpy(buffer_m,"");
 	}
 	
@@ -162,7 +162,7 @@ WebCrawler::onContentFound(char character) {
 	
 	strcat(description, buffer_m);
 	strcat(description, buffer_k);
-	_urlArray[_headURL]._description = strdup(description);	
+	_urlArray[_headURL]._description = strdup(description);*/	
 	return;	
 		
 }
