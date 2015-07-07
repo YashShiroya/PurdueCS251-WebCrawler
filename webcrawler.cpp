@@ -6,7 +6,8 @@
 #include "SimpleHTMLParser.h"
 
 // Add your implementation here
-char * _buffer = (char*) malloc(50);
+char * _buffer = (char*) malloc(5000);
+char * buffer_start = _buffer;
 
 char * buffer_t = (char*) malloc(500);
 char * buffer_t_p = buffer_t;
@@ -120,14 +121,15 @@ void
 WebCrawler::onContentFound(char character) {
 	
 	char c = character;
-	*description = c;
-	description++;
-	*description = '\0';
+	
+	*_buffer = c;								//___________description = _buffer, desc = buffer_start
+	_buffer++;
+	*_buffer = '\0';
 
 	if(character == '~') {
-		desc[strlen(desc) - 1] = '\0';
-		_urlArray[_headURL]._description = strdup(desc);
-		description = desc;
+		buffer_start[strlen(buffer_start) - 1] = '\0';
+		_urlArray[_headURL]._description = strdup(buffer_start);
+		_buffer = buffer_start;
 	}
 	
 	return;	
