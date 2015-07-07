@@ -15,6 +15,8 @@ char * buffer_k_p = buffer_k;
 char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
+char * description = (char*) malloc(10000);
+
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
   // Allocate space for _urlArray
@@ -131,7 +133,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
 		strcat(buffer_m,"\n");
-		
+		strcat(description, buffer_m);
 		_buffer = buffer_start;
 	}
 	if(character == ']') {
@@ -140,7 +142,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
 		strcat(buffer_k,"\n");
-
+		strcat(description, buffer_k);
 		_buffer = buffer_start;
 	}
 	if(character == '_') {
@@ -157,13 +159,8 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
-	char * description = (char*) malloc(10000);
-	strcpy(description, "");
 	
-	strcat(description, buffer_m);
-	
-	strcat(description, buffer_k);
-	
+
 	_urlArray[_headURL]._description = strdup(description);	
 	
 	return;	
