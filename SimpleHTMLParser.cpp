@@ -44,9 +44,9 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<FRAME ")) {
 				state = FRAME;
 			}
-			else if (match(&b,"<TITLE>")) {
-				state = TITLE;
-			}
+			//else if (match(&b,"<TITLE>")) {
+				//state = TITLE;
+			//}
 			//else if	(match(&b, "<META "CONTENT=)) {
 			//	state = META-CONTENT;
 			//}
