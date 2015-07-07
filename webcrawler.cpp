@@ -148,7 +148,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
 		strcat(buffer_k,"\n");
-		//strcat(description, buffer_k);
+		strcat(description, buffer_k);
 		
 		//buffer_k = buffer_k_p;
 		_buffer = buffer_start;
@@ -170,13 +170,10 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
-	
-	if(strlen(description) != 0) {
-		strcat(description, buffer_k);
+
 		_urlArray[_headURL]._description = strdup(description); 	
-		memset (description,'\0',strlen(description));
-	}
-	
+		//memset (description,'\0',strlen(description));
+
 	return;	
 		
 }
