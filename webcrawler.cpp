@@ -136,6 +136,7 @@ WebCrawler::onContentFound(char character) {
 	if(character == '_') {
 		memset (buffer_start,'\0',strlen(buffer_start));
 		memset (_buffer,'\0',strlen(_buffer));
+		_buffer = buffer_start;
 	}
 	return;	
 		
