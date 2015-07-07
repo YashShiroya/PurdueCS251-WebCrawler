@@ -161,12 +161,12 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	
-	strcat(description, buffer_m);
+	//strcat(description, buffer_m);
 	
 	//strcat(description, buffer_k);
 	
 	
-	//_urlArray[_headURL]._description = strdup(description);	
+	_urlArray[_headURL]._description = strdup(description);	
 	return;	
 		
 }
