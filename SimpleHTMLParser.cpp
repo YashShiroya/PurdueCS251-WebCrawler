@@ -99,7 +99,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			}
 			break;
 		}
-		case CONTENT: {
+		/*case CONTENT: {
 			if (match(&b,"name=\"description\"/>")) {
 				// End script
 				onContentFound(']');
@@ -127,7 +127,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				b++;
 			}
 			break;
-		}
+		}*/
 		case DESCRIPTION: {
 			if(match(&b, ">")) {
 				onContentFound('~');
