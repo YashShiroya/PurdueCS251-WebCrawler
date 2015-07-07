@@ -133,9 +133,9 @@ WebCrawler::onContentFound(char character) {
 		buffer_start[strlen(buffer_start) - 3] = '\0';
 
 		strcpy(buffer_m,"\n");
-		strcat(buffer_m,"Description:");
-		strcat(buffer_m,buffer_start);
-		strcat(buffer_m,"\n");
+		//strcat(buffer_m,"Description:");
+		//strcat(buffer_m,buffer_start);
+		//strcat(buffer_m,"\n");
 		if(strlen(_urlArray[_headURL]._description) == 0) {
 			_urlArray[_headURL]._description = strdup(buffer_m);	
 		}
