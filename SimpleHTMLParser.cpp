@@ -44,8 +44,8 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<FRAME ")) {
 				state = FRAME;
 			}
-			/*else if (match(&b,"<TITLE>")) {
-				//state = TITLE;
+			else if (match(&b,"<TITLE>")) {
+				state = TITLE;
 			}
 			
 			/*else if	(match(&b, "<META NAME=\"DESCRIPTION\" CONTENT=\"")) {
@@ -59,9 +59,6 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if	(match(&b, "<META CONTENT=\"")) {
 				state = CONTENT;
 			}
-			//else if	(match(&b, "<META KEYWORDS=")) {
-			//	state = META-KEYWORDS;
-			//}
 			else if	(match(&b,"<")) {
 				state = TAG;
 			}
@@ -106,10 +103,10 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				state = START;
 			}
 			
-			else if (match(&b,"name=\"description\"/>")) {
+			/*else if (match(&b,"name=\"description\"/>")) {
 				onContentFound(']');
 				state = START;
-			}
+			}*/
 			
 			else {
 				onContentFound(*b);
