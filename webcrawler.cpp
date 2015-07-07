@@ -9,10 +9,10 @@
 char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(5000);
+char * buffer_k = (char*) malloc(500);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(5000);
+char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
 char * description = (char*) malloc(10000);
@@ -160,8 +160,8 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
-	//strcat(description, buffer_m);
-	//strcat(description, buffer_k);
+	strcat(description, buffer_m);
+	strcat(description, buffer_k);
 	_urlArray[_headURL]._description = strdup(description);	
 	return;	
 		
