@@ -128,6 +128,7 @@ WebCrawler::onContentFound(char character) {
 	_buffer++;
 	*_buffer = '\0';
 	strcpy(buffer_m,"");
+	strcpy(buffer_k,"");
 	
 	if(character == '[') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
@@ -162,8 +163,6 @@ WebCrawler::onContentFound(char character) {
 	
 	
 	//strcat(description, buffer_m);
-	if(buffer_k == NULL)
-	printf("buffer_k is NULL\n");
 	
 	strcat(description, buffer_k);
 	
