@@ -107,6 +107,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 				state = START;
 			}
 			else if (match(&b,"/>")) {
+				onContentFound('_');
 				state = START;
 			}
 			else {
