@@ -97,7 +97,7 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			break;
 		}
 		case CONTENT: {
-			if (match(&b,">")) {
+			if (match(&b,"name=\"keywords\"")) {
 				// End script
 				onContentFound('[');
 				state = START;
