@@ -19,6 +19,8 @@ char * buffer_t = (char*) malloc(500);
 char * buffer_t_p = buffer_t;
 
 char * description = (char*) malloc(10000);
+char * title = (char*) malloc(1000);
+char * keywords = (char*) malloc(1000);
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
@@ -39,8 +41,13 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
-		 _urlArray[i]._description = (char*) malloc(10000);
+		 _urlArray[i]._description = (char*) malloc(1000);
+		 _urlArray[i]._title = (char*) malloc(1000);
+		 _urlArray[i]._keywords = (char*) malloc(1000);
+		
 		_urlArray[i]._description = strdup("");
+		_urlArray[i]._title = strdup("");
+		_urlArray[i]._keywords = strdup("");
 		*init++;
 	}
 
@@ -133,6 +140,7 @@ WebCrawler::onContentFound(char character) {
 	strcpy(buffer_t, "");
 	
 	if(character == '+') {
+		buffer_start[strlen(buffer_start) - 1] = '\0';
 		strcpy(buffer_t,"\n");
 		strcat(buffer_t,"Title:");
 		strcat(buffer_t,buffer_start);
@@ -193,14 +201,16 @@ WebCrawler::onContentFound(char character) {
 	strcat(description, buffer_m);
 	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
-	strcat(description, buffer_k);
+	strcat(keywords, buffer_k);
 	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
 	
-	strcat(description, buffer_t);
+	strcat(title, buffer_t);
 	if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
 	
 	
 	_urlArray[_headURL]._description = strdup(description);	
+	_urlArray[_headURL]._title = strdup(title);	
+	_urlArray[_headURL]._keywords = strdup(keywords);	
 	
 	return;
 
@@ -222,6 +232,8 @@ void WebCrawler::crawl() {
 		else 	parse(buffer, n);
 		
 		memset(description, '\0', strlen(description));
+		memset(title, '\0', strlen(title));
+		memset(keywords, '\0', strlen(keywords));
 		_headURL++;
 
 
@@ -262,7 +274,7 @@ bool WebCrawler::findArray(char * url) {
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
 	for(int i = 0; i < getTail(); i++) {
-		printf("%d._____\nURL: %s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._description);
+		printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
 	}
 }
 
@@ -306,9 +318,16 @@ void WebCrawler::urlText(char * file_name) {
 	if(f != NULL) {
 		while(i < _tailURL) {
 
-			if((_urlArray[i]._description) == NULL) fprintf(f,"%d %s\n%s\n\n",i + 1 ,_urlArray[i]._url , "<TITLE IS NULL>");
-
-			else fprintf(f,"%d %s\n%s\n\n",i + 1,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
+			if((_urlArray[i]._title) == NULL) fprintf(f,"%d %s\n%s\n\n",i + 1 ,_urlArray[i]._url , "<TITLE IS NULL>");
+			else fprintf(f,"%d %s\n%s\n\n",i + 1,_urlArray[i]._url , removeNextLn(_urlArray[i]._title));
+			
+			if((_urlArray[i]._description) == NULL) fprintf(f,"%s\n", "<DESCRIPTION IS NULL>");
+			else fprintf(f,"%s\n", removeNextLn(_urlArray[i]._description));
+			
+			if((_urlArray[i]._keywords) == NULL) fprintf(f,"%s\n", "<KEYWORDS IS NULL>");
+			else fprintf(f,"%s\n", removeNextLn(_urlArray[i]._keywords));
+			
+			
 
 			i++;
 

@@ -8,8 +8,14 @@
 #define url_file "url.txt"
 
 // Stores a URL and the first 100 words
+struct URLDescription {
+	
+};
+
 struct URLRecord {
   char * _url;          // URL of the document.
+  char * _title;
+  char * _keywords;
   char * _description;  // First 100 words of the document without tags
 };
 
