@@ -317,17 +317,19 @@ void WebCrawler::urlText(char * file_name) {
 	int i = 0;
 	if(f != NULL) {
 		while(i < _tailURL) {
-
-			if((_urlArray[i]._title) == NULL) fprintf(f,"%d %s\n%s\n\n",i + 1 ,_urlArray[i]._url , "<TITLE IS NULL>");
-			else fprintf(f,"%d %s\n%s\n\n",i + 1,_urlArray[i]._url , removeNextLn(_urlArray[i]._title));
+			
+			fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
+			
+			if((_urlArray[i]._title) == NULL) fprintf(f,"%s", "<TITLE IS NULL>");
+			else fprintf(f,"%s", removeNextLn(_urlArray[i]._title));
 			
 			if((_urlArray[i]._description) == NULL) fprintf(f,"%s\n", "<DESCRIPTION IS NULL>");
-			else fprintf(f,"%s\n", removeNextLn(_urlArray[i]._description));
+			else fprintf(f,"%s", removeNextLn(_urlArray[i]._description));
 			
 			if((_urlArray[i]._keywords) == NULL) fprintf(f,"%s\n", "<KEYWORDS IS NULL>");
-			else fprintf(f,"%s\n", removeNextLn(_urlArray[i]._keywords));
+			else fprintf(f,"%s", removeNextLn(_urlArray[i]._keywords));
 			
-			
+			fprintf(f,"\n");			
 
 			i++;
 
