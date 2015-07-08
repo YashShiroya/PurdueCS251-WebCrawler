@@ -15,6 +15,9 @@ char * buffer_k_p = buffer_k;
 char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
+char * buffer_t = (char*) malloc(500);
+char * buffer_t_p = buffer_t;
+
 char * description = (char*) malloc(10000);
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
@@ -30,6 +33,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	const char ** init = initialURLs;
 	strcpy(buffer_k, "");
 	strcpy(buffer_m, "");
+	strcpy(buffer_t, "");
 
 	_urlToUrlRecord = new HashTableTemplate<int>();
 
@@ -124,8 +128,18 @@ WebCrawler::onContentFound(char character) {
 	*_buffer = c;								//___________description = _buffer, desc = buffer_start
 	_buffer++;
 	*_buffer = '\0';
-	strcpy(buffer_m,"");
-	strcpy(buffer_k,"");
+	strcpy(buffer_m, "");
+	strcpy(buffer_k, "");
+	strcpy(buffer_t, "");
+	
+	if(character == '+') {
+		strcpy(buffer_t,"\n");
+		strcat(buffer_t,"Title:");
+		strcat(buffer_t,buffer_start);
+		strcat(buffer_t,"\n");
+		
+		_buffer = buffer_start;
+	}
 	
 	if(character == '[' || character == '}') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
@@ -171,12 +185,23 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
+	if(buffer_t == NULL || strlen(buffer_t) == 0) {
+		strcpy(buffer_t,"");
+	}
 	
-	strcat(description, buffer_m);
+	
+	
 	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
-	strcat(description, buffer_k);
+	strcat(description, buffer_m);
+	
 	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
+	
+	strcat(description, buffer_k);
+	
+
+	if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
+	strcat(description, buffer_t);
 	
 	_urlArray[_headURL]._description = strdup(description);	
 	
