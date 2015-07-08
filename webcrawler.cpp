@@ -297,7 +297,7 @@ void WebCrawler::setTail(int tail) {_tailURL = tail;}
 char * WebCrawler::removeNextLn(char * description) {
 	char * d = description;
 	char * desc_cpy = (char*) malloc(strlen(description) + 10);
-	strcpy(desc_cpy, "a");
+	strcpy(desc_cpy, "");
 	char * desc_cpy_start = desc_cpy;
 	//printf("desc_cpy_start %s\n", desc_cpy_start);
 	while(*d) {
