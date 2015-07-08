@@ -116,7 +116,6 @@ void WebCrawler::onAnchorFound(char * url) {
 }
 
 
-
 void
 WebCrawler::onContentFound(char character) {
 
@@ -137,6 +136,7 @@ WebCrawler::onContentFound(char character) {
 		
 		_buffer = buffer_start;
 	}
+	
 	if(character == ']') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
 		strcpy(buffer_k,"\n");
