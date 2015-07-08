@@ -137,7 +137,7 @@ WebCrawler::onContentFound(char character) {
 		
 		_buffer = buffer_start;
 	}
-	if(character == ']' || character == '{') {
+	if(character == ']') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
@@ -146,6 +146,17 @@ WebCrawler::onContentFound(char character) {
 
 		_buffer = buffer_start;
 	}
+	
+	if(character == '{') {
+	buffer_start[strlen(buffer_start) - 3] = '\0';
+		strcpy(buffer_k,"\n");
+		strcat(buffer_k,"Keywords:");
+		strcat(buffer_k,buffer_start);
+		strcat(buffer_k,"\n");
+
+		_buffer = buffer_start;
+	}
+	
 	if(character == '_') {
 		memset (buffer_start,'\0',strlen(buffer_start));
 		memset (_buffer,'\0',strlen(_buffer));
