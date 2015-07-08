@@ -329,7 +329,7 @@ void WebCrawler::urlText(char * file_name) {
 			if((_urlArray[i]._keywords) == NULL) fprintf(f,"%s\n", "<KEYWORDS IS NULL>");
 			else fprintf(f,"%s", removeNextLn(_urlArray[i]._keywords));
 			
-			fprintf(f,"\n");			
+			fprintf(f,"\n\n\n");			
 
 			i++;
 
