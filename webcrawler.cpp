@@ -135,6 +135,7 @@ WebCrawler::onContentFound(char character) {
 	*_buffer = c;								//___________description = _buffer, desc = buffer_start
 	_buffer++;
 	*_buffer = '\0';
+	strcpy(_buffer, "");
 	strcpy(buffer_m, "");
 	strcpy(buffer_k, "");
 	strcpy(buffer_t, "");
