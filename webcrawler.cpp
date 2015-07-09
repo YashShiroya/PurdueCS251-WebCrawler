@@ -33,6 +33,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	_headURL = 0;
 	_tailURL = nInitialURLs;
 	const char ** init = initialURLs;
+	strcpy(_buffer, "");
 	strcpy(buffer_k, "");
 	strcpy(buffer_m, "");
 	strcpy(buffer_t, "");
@@ -137,7 +138,7 @@ WebCrawler::onContentFound(char character) {
 	*_buffer = '\0';
 	strcpy(_buffer, "");
 	strcpy(buffer_m, "");
-	//strcpy(buffer_k, "");
+	strcpy(buffer_k, "");
 	strcpy(buffer_t, "");
 	
 	if(character == '+') {
