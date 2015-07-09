@@ -275,7 +275,8 @@ bool WebCrawler::findArray(char * url) {
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
 	for(int i = 0; i < getTail(); i++) {
-		printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
+		//printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
+		printf("%d._____\nURL: %s\n", i + 1, _urlArray[i]._url);
 	}
 }
 
