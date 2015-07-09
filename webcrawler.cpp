@@ -9,7 +9,7 @@
 char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(500);
+char * buffer_k = (char*) malloc(50000);
 char * buffer_k_p = buffer_k;
 
 char * buffer_m = (char*) malloc(500);
