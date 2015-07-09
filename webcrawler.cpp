@@ -9,7 +9,7 @@
 char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(50000);
+char * buffer_k = (char*) malloc(500);
 char * buffer_k_p = buffer_k;
 
 char * buffer_m = (char*) malloc(500);
@@ -171,7 +171,7 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	if(character == '{') {
-	buffer_start[strlen(buffer_start) - 4] = '\0';
+	//buffer_start[strlen(buffer_start) - 4] = '\0';
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
