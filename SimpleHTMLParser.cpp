@@ -47,12 +47,12 @@ SimpleHTMLParser::parse(char * buffer, int n)
 			else if (match(&b,"<TITLE>")) {
 				state = TITLE;
 			}
-			/*
+			
 			else if	(match(&b, "<META NAME=\"DESCRIPTION\" CONTENT=\"")) {
 				state = DESCRIPTION;
 			}
 			
-			else if	(match(&b, "<META NAME=\"KEYWORDS\" CONTENT=\"")) {
+			/*else if	(match(&b, "<META NAME=\"KEYWORDS\" CONTENT=\"")) {
 				state = KEYWORDS;
 			}
 			
