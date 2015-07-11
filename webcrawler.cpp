@@ -178,7 +178,7 @@ WebCrawler::onContentFound(char character) {
 		strcat(buffer_k,buffer_start);
 		strcat(buffer_k,"\n");
 
-		_buffer = "";
+		_buffer -= strlen(buffer_start) ;
 	}
 	
 	if(character == '_') {
