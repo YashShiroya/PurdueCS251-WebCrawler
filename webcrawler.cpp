@@ -172,7 +172,15 @@ WebCrawler::onContentFound(char character) {
 	}
 	
 	if(character == '{') {
-	buffer_start[strlen(buffer_start) - 4] = '\0';
+	//buffer_start[strlen(buffer_start) - 4] = '\0';
+	char * s = buffer_start;
+	while(s) {
+		if(*s == '"') {
+			*s = '\0';
+			break;
+		}
+		s++; 
+	}
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
