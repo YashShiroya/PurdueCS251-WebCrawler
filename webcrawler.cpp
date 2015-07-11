@@ -6,21 +6,21 @@
 #include "SimpleHTMLParser.h"
 
 // Add your implementation here
-char * _buffer = (char*) malloc(10000);
+char * _buffer = (char*) malloc(50000);
 char * buffer_start = _buffer;
 
 char * buffer_k = (char*) malloc(10000);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(500);
+char * buffer_m = (char*) malloc(10000);
 char * buffer_m_p = buffer_m;
 
-char * buffer_t = (char*) malloc(500);
+char * buffer_t = (char*) malloc(10000);
 char * buffer_t_p = buffer_t;
 
 char * description = (char*) malloc(10000);
-char * title = (char*) malloc(1000);
-char * keywords = (char*) malloc(1000);
+char * title = (char*) malloc(10000);
+char * keywords = (char*) malloc(10000);
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
