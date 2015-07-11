@@ -42,9 +42,9 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
-		 _urlArray[i]._description = (char*) malloc(1000);
-		 _urlArray[i]._title = (char*) malloc(1000);
-		 _urlArray[i]._keywords = (char*) malloc(1000);
+		 _urlArray[i]._description = (char*) malloc(10000);
+		 _urlArray[i]._title = (char*) malloc(10000);
+		 _urlArray[i]._keywords = (char*) malloc(10000);
 		
 		_urlArray[i]._description = strdup("");
 		_urlArray[i]._title = strdup("");
