@@ -6,7 +6,7 @@
 #include "SimpleHTMLParser.h"
 
 // Add your implementation here
-char * _buffer = (char*) malloc(5000);
+char * _buffer = (char*) malloc(10000);
 char * buffer_start = _buffer;
 
 char * buffer_k = (char*) malloc(500);
