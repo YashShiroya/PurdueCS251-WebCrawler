@@ -209,13 +209,13 @@ WebCrawler::onContentFound(char character) {
 	
 	
 	strcat(description, buffer_m);
-	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
+	//if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
 	strcat(keywords, buffer_k);
-	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
+	//if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
 	
 	strcat(title, buffer_t);
-	if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
+	//if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
 	
 	
 	_urlArray[_headURL]._description = strdup(description);	
