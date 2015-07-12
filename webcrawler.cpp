@@ -403,7 +403,7 @@ int main(int argc, const char ** argv) {
 
 	const char ** urlSet = argv;
 	urlSet += 1;
-	int maxURLs = 50;
+	int maxURLs = 10;
 
 	printf("urlSet %s\n", *urlSet);
 
