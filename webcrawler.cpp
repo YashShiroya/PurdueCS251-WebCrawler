@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "openhttp.h"
 #include "SimpleHTMLParser.h"
+#define MAXWORD 200
+
 
 // Add your implementation here
 char * _buffer = (char*) malloc(50000);
@@ -22,6 +24,9 @@ char * description = (char*) malloc(10000);
 char * title = (char*) malloc(10000);
 char * keywords = (char*) malloc(10000);
 
+int wordLength = 0;
+char word[MAXWORD]; 
+
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
 	// Allocate space for _urlArray
@@ -39,6 +44,7 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	strcpy(buffer_t, "");
 
 	_urlToUrlRecord = new HashTableTemplate<int>();
+	_wordToURLRecordList = new HashTableTemplate<URLRecordList *>();
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
@@ -128,6 +134,25 @@ void WebCrawler::onAnchorFound(char * url) {
 }
 
 
+/*char * nextword(char * string){
+	int c = string;
+	int i = 0;
+	
+	memset(word, 0, MAXWORD);
+	
+	while(c) {
+	    if( c != 32 && c != '\n' && c != '\r' && c != '\t') {
+	        word[i++] = c;
+	    }
+	    else if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
+	        if(i > 0) {
+		return word;
+		}
+	   }
+	}
+	return NULL;
+}*/
+
 void
 WebCrawler::onContentFound(char character) {
 
@@ -143,6 +168,14 @@ WebCrawler::onContentFound(char character) {
 	
 	if(character == '+') {
 		buffer_start[strlen(buffer_start) - 1] = '\0';
+		char * s = buffer_start;
+	while(s) {
+		if(*s == '"') {
+			*s = '\0';
+			break;
+		}
+		s++; 
+	}
 		strcpy(buffer_t,"\n");
 		strcat(buffer_t,"Title:");
 		strcat(buffer_t,buffer_start);
@@ -153,6 +186,14 @@ WebCrawler::onContentFound(char character) {
 	
 	if(character == '[' || character == '}') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
+	char * s = buffer_start;
+	while(s) {
+		if(*s == '"') {
+			*s = '\0';
+			break;
+		}
+		s++; 
+	}
 		strcpy(buffer_m,"\n");
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
@@ -163,6 +204,14 @@ WebCrawler::onContentFound(char character) {
 	
 	if(character == ']') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
+	char * s = buffer_start;
+	while(s) {
+		if(*s == '"') {
+			*s = '\0';
+			break;
+		}
+		s++; 
+	}
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
