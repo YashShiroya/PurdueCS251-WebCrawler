@@ -9,21 +9,21 @@
 
 
 // Add your implementation here
-char * _buffer = (char*) malloc(5000);
+char * _buffer = (char*) malloc(50000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(1000);
+char * buffer_k = (char*) malloc(10000);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(1000);
+char * buffer_m = (char*) malloc(10000);
 char * buffer_m_p = buffer_m;
 
-char * buffer_t = (char*) malloc(1000);
+char * buffer_t = (char*) malloc(10000);
 char * buffer_t_p = buffer_t;
 
-char * description = (char*) malloc(1000);
-char * title = (char*) malloc(1000);
-char * keywords = (char*) malloc(1000);
+char * description = (char*) malloc(10000);
+char * title = (char*) malloc(10000);
+char * keywords = (char*) malloc(10000);
 
 int wordLength = 0;
 char word[MAXWORD]; 
@@ -33,9 +33,9 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	// Allocate space for _urlArray
 	// insert the initialURls
 	// Update _maxUrls, _headURL and _tailURL
-	_maxURLs = maxURLs;
+
 	_urlArray = new URLRecord[maxURLs]; //nInitialURLs later
-	
+	_maxURLs = maxURLs;
 	_headURL = 0;
 	_tailURL = nInitialURLs;
 	const char ** init = initialURLs;
@@ -49,9 +49,9 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
-		_urlArray[i]._description = (char*) malloc(1000);
-		_urlArray[i]._title = (char*) malloc(1000);
-		_urlArray[i]._keywords = (char*) malloc(1000);
+		_urlArray[i]._description = (char*) malloc(10000);
+		_urlArray[i]._title = (char*) malloc(10000);
+		_urlArray[i]._keywords = (char*) malloc(10000);
 
 		_urlArray[i]._description = strdup("");
 		_urlArray[i]._title = strdup("");
@@ -136,7 +136,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 void WebCrawler::InsertNextWord(URLRecord *_array) {
 
-	char * local_buffer = (char*) malloc(5000);
+	char * local_buffer = (char*) malloc(50000);
 	
 	//char * lb = local_buffer;
 	int c;
@@ -153,8 +153,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		if(_array[i]._description != NULL) {
 			strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		}
-		
-		if(strcmp(local_buffer, "") == 0) continue;		
+				
 		char * lb = strdup(local_buffer);
 		
 		//nextword
@@ -171,15 +170,18 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 					//Add Here
 					word[wordLength] = '\0';
 					wordLength = 0;
-										
+					//char * t; 
+					//t = strdup(word);
+					//printf("word: %s\n", t);
+					
 					URLRecordList * temp = NULL;
 					
 					if(_wordToURLRecordList->find(word, &temp) == false) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = NULL;
-						//printf("Insert1\n");
-						//printf("word: %s\n", word);
+						printf("Insert1\n");
+						printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u); 
 					}
 					
@@ -187,8 +189,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = temp;
-						//printf("Insert2\n");
-						//printf("word: %s\n", word);
+						printf("Insert2\n");
+						printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u);
 					}
 				}	
@@ -209,6 +211,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 	for(int i = 0; i < 1000; i++) container[i] = -7;
 	
 	
+	//
 	int index = -1;
 	int flag = 0;
 	int current_size = 0;
@@ -220,15 +223,15 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			
 			HashTableTemplateEntry<URLRecordList *> * he = _wordToURLRecordList->_buckets[i];
 			
-			//fprintf(file, "%s ", he->_key);
 			
 			while (he != NULL) {
 			
-			fprintf(file, "%s ", he->_key);	
-				URLRecordList * e = he->_data;
+				fprintf(file, "%s ", he->_key);
 				
+				URLRecordList * e = he->_data;
+			
 				while(e != NULL) {
-					
+				
 					for(int j = 0; j < current_size; j++) {
 						if(container[j] == e->_urlRecordIndex) {
 							flag = 1;
@@ -242,14 +245,14 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 						continue;
 					}
 					
-					//index = e->_urlRecordIndex;
 					container[current_size] = e->_urlRecordIndex;
 					current_size++;
 					
 					fprintf(file, "%d ", e->_urlRecordIndex);
 					e = e->_next;
-					
+				
 				}
+				
 				current_size = 0;
 				fprintf(file, "\n");
 				he = he->_next;
@@ -406,8 +409,25 @@ WebCrawler::onContentFound(char character) {
 			_headURL++;
 			
 
+			//Increment _headURL
+
+			//_____________________---//    If the document is not text/html
+
+
+			//continue;
+			/*Get the first 100 characters (at most) of the document without tags. Add this 
+			  description to theURL record for this URL.
+
+
+
+			  Find all the hyperlinks of this document and add them to the
+			  _urlArray and _urlToUrlRecord if they are not already in the
+			  _urlToUrlRecord. Only insert up to _maxURL entries.
+
+			  For each word in the document without tags, add the index of this URL to
+			  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
 		}//while
-		printf("hello\n");
+		
 		InsertNextWord(_urlArray);
 	}
 
@@ -474,16 +494,16 @@ WebCrawler::onContentFound(char character) {
 
 				fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
 
-				if((_urlArray[i]._title) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._title));
+				if((_urlArray[i]._title) == NULL) fprintf(f," %s", "<TITLE IS NULL>");
+				else fprintf(f," %s", removeNextLn(_urlArray[i]._title));
 
-				if((_urlArray[i]._description) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n\n", removeNextLn(_urlArray[i]._description));
+				if((_urlArray[i]._description) == NULL) fprintf(f," %s\n", "<DESCRIPTION IS NULL>");
+				else fprintf(f," %s", removeNextLn(_urlArray[i]._description));
 
-				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._keywords));
+				if((_urlArray[i]._keywords) == NULL) fprintf(f," %s\n", "<KEYWORDS IS NULL>");
+				else fprintf(f," %s", removeNextLn(_urlArray[i]._keywords));
 
-				fprintf(f,"\n\n");			
+				fprintf(f,"\n\n\n");			
 
 				i++;
 
@@ -498,7 +518,7 @@ WebCrawler::onContentFound(char character) {
 
 		const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 50;
+		int maxURLs = 10;
 
 		printf("urlSet %s\n", *urlSet);
 
