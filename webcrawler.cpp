@@ -243,7 +243,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					container[current_size] = index;
 					current_size++;*/
 					
-					fprintf(file, "%d ", index);
+					fprintf(file, "%d ", e->_urlRecordIndex);
 					e = e->_next;
 				
 				}
