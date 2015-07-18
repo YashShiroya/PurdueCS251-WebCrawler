@@ -138,7 +138,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 	char * local_buffer = (char*) malloc(50000);
 	strcpy(local_buffer, "");
-	char * lb = local_buffer;
+	//char * lb = local_buffer;
 	int c;
 	int i = 0;
 
@@ -149,13 +149,11 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		
 		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
-
-
-		memset(word, 0, MAXWORD);
-
 		
+		char * lb = strdup(local_buffer);
+		char * t;
 		//nextword
-		while(c = *lb) {
+		while((c = *lb) != '\0') {
 		
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
 				word[i++] = c;
@@ -170,7 +168,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 					//Add Here
 					word[i] = '\0';
 					i = 0;
-					
+					t = strdup(word);
 					URLRecordList * temp = NULL;
 					
 					if(_wordToURLRecordList->find(word, &temp) == false) {
@@ -178,8 +176,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						u->_urlRecordIndex = i;
 						u->_next = NULL;
 						printf("Insert1\n");
-						printf("word: %s\n", word);
-						_wordToURLRecordList->insertItem(word, u); 
+						printf("word: %s\n", t);
+						_wordToURLRecordList->insertItem(t, u); 
 					}
 					
 					else {
@@ -187,8 +185,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						u->_urlRecordIndex = i;
 						u->_next = temp;
 						printf("Insert2\n");
-						printf("word: %s\n", word);
-						_wordToURLRecordList->insertItem(word, u);
+						printf("word: %s\n", t);
+						_wordToURLRecordList->insertItem(t, u);
 					}
 				}	
 			}
