@@ -51,7 +51,7 @@ class WebCrawler : public SimpleHTMLParser {
   void setTail(int tail);
   void printArray();
   void setNull(char * str);
- // void InsertNextWord(URLRecord *_array);
+  void InsertNextWord(URLRecord *_array);
   char * removeNextLn(char * description);
   //Pareser Sublcassing
   void onAnchorFound(char * url);
