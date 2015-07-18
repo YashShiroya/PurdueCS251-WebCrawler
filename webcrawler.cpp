@@ -385,7 +385,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			memset(title, '\0', strlen(title));
 			memset(keywords, '\0', strlen(keywords));
 			_headURL++;
-
+			
 
 			//Increment _headURL
 
@@ -405,6 +405,8 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			  For each word in the document without tags, add the index of this URL to
 			  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
 		}//while
+		
+		InsertNextWord(_urlArray);
 	}
 
 
@@ -505,6 +507,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 		wCrawler->crawl();
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
+		wCrawler->writeWordFile(word_file);
 		wCrawler->printArray();
 
 		return 0;
