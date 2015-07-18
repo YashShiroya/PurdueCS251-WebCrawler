@@ -544,7 +544,7 @@ WebCrawler::onContentFound(char character) {
 		
 		const char ** urlSet = argv;
 		urlSet += 1;
-	int maxURLs = 30;
+	int maxURLs = 10;
 
 	printf("urlSet %s\n", *urlSet);
 
@@ -554,7 +554,7 @@ WebCrawler::onContentFound(char character) {
 	//wCrawler->setTail(argc - 1);
 	wCrawler->crawl();
 	printf("tail %d\n", wCrawler->getTail());
-	//wCrawler->writeWordFile(word_file);
+	wCrawler->writeWordFile(word_file);
 	wCrawler->urlText(url_file);
 	wCrawler->printArray();
 
