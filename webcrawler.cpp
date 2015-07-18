@@ -170,11 +170,10 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 					//Add Here
 					word[wordLength] = '\0';
 					wordLength = 0;
-					//char * t; 
-					//t = strdup(word);
-					//printf("word: %s\n", t);
-					
-					URLRecordList * temp = NULL;
+					char * t; 
+					t = strdup(word);
+					printf("word: %s\n", t);
+					/*URLRecordList * temp = NULL;
 					
 					if(_wordToURLRecordList->find(word, &temp) == false) {
 						URLRecordList * u = new URLRecordList();
@@ -192,7 +191,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						printf("Insert2\n");
 						printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u);
-					}
+					}*/
 				}	
 			}
 			lb++;
@@ -206,15 +205,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 	FILE * file;
 	file = fopen(word_file, "w");
 	
-	int container[1000];
-	
-	for(int i = 0; i < 1000; i++) container[i] = -7;
-	
-	
-	//
-	int index = -1;
-	int flag = 0;
-	int current_size = 0;
+	fclose(file);
 	
 	for(int i = 0; i < 2039; i++) {
 		
@@ -223,46 +214,25 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			
 			HashTableTemplateEntry<URLRecordList *> * he = _wordToURLRecordList->_buckets[i];
 			
+			fprintf(file, "%s ", he->_key);
 			
 			while (he != NULL) {
-			
-				fprintf(file, "%s ", he->_key);
 				
 				URLRecordList * e = he->_data;
 			
 				while(e != NULL) {
 				
-					for(int j = 0; j < current_size; j++) {
-						if(container[j] == e->_urlRecordIndex) {
-							flag = 1;
-							break;
-						}
-					}
-					
-					if(flag == 1) {
-						flag = 0;
-						e = e->_next;
-						continue;
-					}
-					
-					container[current_size] = e->_urlRecordIndex;
-					current_size++;
-					
 					fprintf(file, "%d ", e->_urlRecordIndex);
 					e = e->_next;
 				
 				}
 				
-				current_size = 0;
-				fprintf(file, "\n");
 				he = he->_next;
 			
 			}
 		}
 		
 	}
-	
-	fclose(file);
 }
 
 
@@ -428,7 +398,7 @@ WebCrawler::onContentFound(char character) {
 			  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
 		}//while
 		
-		//InsertNextWord(_urlArray);
+		InsertNextWord(_urlArray);
 	}
 
 
