@@ -472,7 +472,7 @@ WebCrawler::onContentFound(char character) {
 		char * desc_cpy_start = desc_cpy;
 		//printf("desc_cpy_start %s\n", desc_cpy_start);
 		while(*d) {
-			if(*d != '\n') {
+			if(*d != '\n' && *d != ',') {
 				*desc_cpy = *d;
 				desc_cpy++;
 			}
@@ -512,7 +512,6 @@ WebCrawler::onContentFound(char character) {
 
 
 	int main(int argc, const char ** argv) { 
-
 		const char ** urlSet = argv;
 		urlSet += 1;
 		int maxURLs = 10;
@@ -520,6 +519,7 @@ WebCrawler::onContentFound(char character) {
 		printf("urlSet %s\n", *urlSet);
 
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+		
 		int i = 0;
 
 		//wCrawler->setTail(argc - 1);
