@@ -524,7 +524,7 @@ WebCrawler::onContentFound(char character) {
 	 		}
 	 		else {
 			urlSet += 1;
-			maxURLs = 10;
+			maxURLs = 1000;
 	 	}
 		
 		printf("urlSet %s\n", *urlSet);
