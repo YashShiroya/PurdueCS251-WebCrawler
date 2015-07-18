@@ -174,7 +174,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = NULL;
-						
+						printf("Insert1\n");
 						_wordToURLRecordList->insertItem(word, u); 
 					}
 					
@@ -182,14 +182,14 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = temp;
-						
+						printf("Insert2\n");
 						_wordToURLRecordList->insertItem(word, u);
 					}
 				}	
 			}
 		}
 	}
-	printf("YOLO\n");
+	
 }
 
 
