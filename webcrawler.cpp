@@ -145,6 +145,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 	for(int i = 0; i < _tailURL; i++) {
 		
+		if(_array[i]._title == NULL) continue;
 		strcpy(local_buffer, "");
 		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
 		//strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
