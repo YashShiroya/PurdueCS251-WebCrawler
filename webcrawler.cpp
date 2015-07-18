@@ -203,7 +203,13 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 	FILE * file;
 	file = fopen(word_file, "w");
 	
+	int container[50000];
 	
+	for(int i = 0; i < 50000; i++) container[i] = -7;
+	
+	
+	int index = -1;
+	int flag = 0;
 	
 	for(int i = 0; i < 2039; i++) {
 		
@@ -217,9 +223,25 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			while (he != NULL) {
 				
 				URLRecordList * e = he->_data;
-			
+				int current_size = 0;
 				while(e != NULL) {
-				
+					
+					for(int i = 0; i < current_size; i++) {
+						if(container[i] == index) {
+							flag = 1;
+							break;
+						}
+					}
+					
+					if(flag == 1) {
+						flag = 0;
+						continue;
+					}
+					
+					index = e->_urlRecordIndex;
+					container[current_size] = index;
+					current_size++;
+					
 					fprintf(file, "%d ", e->_urlRecordIndex);
 					e = e->_next;
 				
