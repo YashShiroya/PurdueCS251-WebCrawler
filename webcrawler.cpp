@@ -348,7 +348,6 @@ WebCrawler::onContentFound(char character) {
 			strcat(title, buffer_t);
 			//if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
 
-
 			_urlArray[_headURL]._description = strdup(description);	
 			_urlArray[_headURL]._title = strdup(title);	
 			_urlArray[_headURL]._keywords = strdup(keywords);	
@@ -484,15 +483,33 @@ WebCrawler::onContentFound(char character) {
 
 
 	int main(int argc, const char ** argv) { 
-
+	
 		const char ** urlSet = argv;
-		urlSet += 1;
-		int maxURLs = 50;
+		//urlSet += 1;
+		int numInit = 0;
+		int maxURLs = 100;
+	
+		if(argc < 2) {
+			printf("Too few args\n");
+			return 1;
+		}
+		else {
+			if(strcmp(argv[1], "-u") == 0) {
+				maxURLs = atoi(argv[2]);
+				numInit = argc - 3;
+				urlSet += 3;
+			}
+			else {
+				urlSet += 1;
+				numInit = argc - 1;
+			}
+		}
+		
 
 		printf("urlSet %s\n", *urlSet);
 
-		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
-		int i = 0;
+		WebCrawler * wCrawler = new WebCrawler(maxURLs, numInit, urlSet);
+		//int i = 0;
 
 		//wCrawler->setTail(argc - 1);
 		wCrawler->crawl();
