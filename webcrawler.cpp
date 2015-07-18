@@ -133,6 +133,42 @@ void WebCrawler::onAnchorFound(char * url) {
 
 }
 
+/*void WebCrawler::InsertNextWord(URLRecord *_array) {
+	
+	char * local_buffer = (char*) malloc(50000);
+	strcpy(local_buffer, "");
+	char * lb = local_buffer;
+	int c = local_buffer;
+		int i = 0;
+		
+		
+	for(int i = 0; i < _tailArray; i++) {
+		strcat(localbuffer, _array[i].title); strcat(local_buffer, " ");
+		strcat(localbuffer, _array[i].description); strcat(local_buffer, " ");
+		strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
+				
+	
+	memset(word, 0, MAXWORD);
+	
+	
+	//nextword
+	while(c = *lb) {
+	    if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != '"' && c != ',') {
+	        word[i++] = c;
+	    }
+	    else {// if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
+	        lb++;
+	        if(i > 0) {
+				//Add Here
+				word[i] = '\0';
+				i = 0;
+			}	
+	   }
+	}
+	return NULL;
+		
+	}
+}*/
 
 /*char * nextword(char * string){
 	int c = string;
@@ -223,7 +259,7 @@ WebCrawler::onContentFound(char character) {
 	if(character == '{') {
 	//buffer_start[strlen(buffer_start) - 4] = '\0';
 	char * s = buffer_start;
-	while(s) {
+	while(s) 
 		if(*s == '"') {
 			*s = '\0';
 			break;
@@ -269,7 +305,9 @@ WebCrawler::onContentFound(char character) {
 	
 	_urlArray[_headURL]._description = strdup(description);	
 	_urlArray[_headURL]._title = strdup(title);	
-	_urlArray[_headURL]._keywords = strdup(keywords);	
+	
+	
+	_urlArray[_headURL]._keywords = strdup("");								//Made Change here____________________________________
 	
 	return;
 
@@ -284,7 +322,7 @@ void WebCrawler::crawl() {
 		//Fetch the next URL in _headURL
 
 		char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
-
+ 
 		if (buffer == NULL) {
 			fprintf(stderr, "*** Cannot open URL\n");	  
 		}
