@@ -9,18 +9,13 @@
 char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(5000);
+char * buffer_k = (char*) malloc(500);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(5000);
+char * buffer_m = (char*) malloc(500);
 char * buffer_m_p = buffer_m;
 
-char * buffer_t = (char*) malloc(5000);
-char * buffer_t_p = buffer_t;
-
 char * description = (char*) malloc(10000);
-char * title = (char*) malloc(10000);
-char * keywords = (char*) malloc(10000);
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
@@ -35,21 +30,13 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	const char ** init = initialURLs;
 	strcpy(buffer_k, "");
 	strcpy(buffer_m, "");
-	strcpy(buffer_t, "");
-	strcpy(_buffer, "");
-	
 
 	_urlToUrlRecord = new HashTableTemplate<int>();
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
-		_urlArray[i]._description = (char*) malloc(10000);
-		_urlArray[i]._title = (char*) malloc(10000);
-		_urlArray[i]._keywords = (char*) malloc(10000);
-
+		 _urlArray[i]._description = (char*) malloc(10000);
 		_urlArray[i]._description = strdup("");
-		_urlArray[i]._title = strdup("");
-		_urlArray[i]._keywords = strdup("");
 		*init++;
 	}
 
@@ -129,6 +116,7 @@ void WebCrawler::onAnchorFound(char * url) {
 }
 
 
+
 void
 WebCrawler::onContentFound(char character) {
 
@@ -137,41 +125,11 @@ WebCrawler::onContentFound(char character) {
 	*_buffer = c;								//___________description = _buffer, desc = buffer_start
 	_buffer++;
 	*_buffer = '\0';
-	strcpy(buffer_m, "");
-	strcpy(buffer_k, "");
-	strcpy(buffer_t, "");
-	strcpy(_buffer, "");
-
-	
-	if(character == '+') {
-	
-		buffer_start[strlen(buffer_start) - 1] = '\0';
-		char * s = buffer_start;
-		while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
-		strcpy(buffer_t,"\n");
-		strcat(buffer_t,"Title:");
-		strcat(buffer_t,buffer_start);
-		strcat(buffer_t,"\n");
-		
-		_buffer = buffer_start;
-	}
+	strcpy(buffer_m,"");
+	strcpy(buffer_k,"");
 	
 	if(character == '[' || character == '}') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-	char * s = buffer_start;
-	while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
 		strcpy(buffer_m,"\n");
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
@@ -179,17 +137,8 @@ WebCrawler::onContentFound(char character) {
 		
 		_buffer = buffer_start;
 	}
-	
-	if(character == ']') {
+	if(character == ']' || character == '{') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-	char * s = buffer_start;
-	while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
@@ -197,25 +146,6 @@ WebCrawler::onContentFound(char character) {
 
 		_buffer = buffer_start;
 	}
-	
-	if(character == '{') {
-	//buffer_start[strlen(buffer_start) - 4] = '\0';
-	char * s = buffer_start;
-	while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
-		strcpy(buffer_k,"\n");
-		strcat(buffer_k,"Keywords:");
-		strcat(buffer_k,buffer_start);
-		strcat(buffer_k,"\n");
-
-		_buffer = buffer_start;
-	}
-	
 	if(character == '_') {
 		memset (buffer_start,'\0',strlen(buffer_start));
 		memset (_buffer,'\0',strlen(_buffer));
@@ -230,24 +160,14 @@ WebCrawler::onContentFound(char character) {
 		strcpy(buffer_k,"");
 	}
 	
-	if(buffer_t == NULL || strlen(buffer_t) == 0) {
-		strcpy(buffer_t,"");
-	}
-	
 	
 	strcat(description, buffer_m);
-	//if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
+	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
 	strcat(description, buffer_k);
-	//if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
-	
-	strcat(description, buffer_t);
-	//if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
-	
+	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
 	
 	_urlArray[_headURL]._description = strdup(description);	
-	_urlArray[_headURL]._title = strdup(title);	
-	_urlArray[_headURL]._keywords = strdup(keywords);
 	
 	return;
 
@@ -269,8 +189,6 @@ void WebCrawler::crawl() {
 		else 	parse(buffer, n);
 		
 		memset(description, '\0', strlen(description));
-			memset(title, '\0', strlen(title));
-			memset(keywords, '\0', strlen(keywords));
 		_headURL++;
 
 
@@ -311,7 +229,7 @@ bool WebCrawler::findArray(char * url) {
 void WebCrawler::printArray() {
 	printf("URL Array:\n");
 	for(int i = 0; i < getTail(); i++) {
-		printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
+		printf("%d._____\nURL: %s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._description);
 	}
 }
 
@@ -355,20 +273,11 @@ void WebCrawler::urlText(char * file_name) {
 	if(f != NULL) {
 		while(i < _tailURL) {
 
-			fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
+			if((_urlArray[i]._description) == NULL) fprintf(f,"%d %s\n%s\n\n",i + 1 ,_urlArray[i]._url , "<TITLE IS NULL>");
 
-				if((_urlArray[i]._title) == NULL) fprintf(f," %s", "<TITLE IS NULL>");
-				else fprintf(f," %s", removeNextLn(_urlArray[i]._title));
+			else fprintf(f,"%d %s\n%s\n\n",i + 1,_urlArray[i]._url , removeNextLn(_urlArray[i]._description));
 
-				if((_urlArray[i]._description) == NULL) fprintf(f," %s\n", "<DESCRIPTION IS NULL>");
-				else fprintf(f," %s", removeNextLn(_urlArray[i]._description));
-
-				if((_urlArray[i]._keywords) == NULL) fprintf(f," %s\n", "<KEYWORDS IS NULL>");
-				else fprintf(f," %s", removeNextLn(_urlArray[i]._keywords));
-
-				fprintf(f,"\n\n\n");			
-
-				i++;
+			i++;
 
 		}
 		fclose(f);
@@ -381,7 +290,7 @@ int main(int argc, const char ** argv) {
 
 	const char ** urlSet = argv;
 	urlSet += 1;
-	int maxURLs = 20;
+	int maxURLs = 10;
 
 	printf("urlSet %s\n", *urlSet);
 
