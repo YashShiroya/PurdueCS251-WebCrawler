@@ -495,7 +495,7 @@ WebCrawler::onContentFound(char character) {
 				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._title));
 
 				if((_urlArray[i]._description) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._description));
+				else fprintf(f," %s\n\n", removeNextLn(_urlArray[i]._description));
 
 				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
 				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._keywords));
