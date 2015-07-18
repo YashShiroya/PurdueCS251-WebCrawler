@@ -1,3 +1,4 @@
+
 #include "webcrawler.h"
 #include <stdio.h>
 #include <string.h>
@@ -138,14 +139,14 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 	char * local_buffer = (char*) malloc(50000);
 	strcpy(local_buffer, "");
 	char * lb = local_buffer;
-	int c = local_buffer;
+	int c;
 	int i = 0;
 
 
-	for(int i = 0; i < _tailArray; i++) {
-		strcat(localbuffer, _array[i].title); strcat(local_buffer, " ");
-		strcat(localbuffer, _array[i].description); strcat(local_buffer, " ");
-		strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
+	for(int i = 0; i < _tailURL; i++) {
+		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
+		strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
+		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
 
 
 		memset(word, 0, MAXWORD);
@@ -153,22 +154,42 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 		//nextword
 		while(c = *lb) {
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != '"' && c != ',') {
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
 				word[i++] = c;
 			}
-			else {// if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
+			else {	
+				//Pointer moved forward												 // if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
 				lb++;
+				
+				//Word Complete
 				if(i > 0) {
+				
 					//Add Here
 					word[i] = '\0';
 					i = 0;
+					
+					URLRecordList temp = NULL;
+					
+					if(wordToURLRecordList->find(word, &temp) == false) {
+						URLRecordList * u = new URLRecordList();
+						u->_urlRecordIndex = i;
+						u->_next = NULL;
+						
+						_wordToURLRecordList->insertItem(word, u); 
+					}
+					
+					else {
+						URLRecordList * u = new URLRecordList();
+						u->_urlRecordIndex = i;
+						u->_next = temp;
+						
+						_wordToURLRecordList->insertItem(word, u);
+					}
 				}	
 			}
-			}
-			return NULL;
-
 		}
 	}
+}
 
 	/*char * nextword(char * string){
 	  int c = string;
