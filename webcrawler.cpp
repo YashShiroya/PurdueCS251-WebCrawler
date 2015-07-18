@@ -160,7 +160,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		//nextword
 		while((c = *lb) != '\0') {
 		
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-') {
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!') {
 				word[wordLength] = c; wordLength++;
 			}
 			else {	
