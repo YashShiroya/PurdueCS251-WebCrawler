@@ -513,7 +513,7 @@ WebCrawler::onContentFound(char character) {
 
 	int main(int argc, const char ** argv) {
 
-		const char ** urlSet = argv;
+		/*const char ** urlSet = argv;
 		int maxURLs = 1000;
 		WebCrawler * wCrawler;
 	 	if(argc < 2) {printf("Too few args\n"); return 1;}
@@ -540,8 +540,24 @@ WebCrawler::onContentFound(char character) {
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
 		wCrawler->writeWordFile(word_file);
-		wCrawler->printArray();
+		wCrawler->printArray();*/
+		
+		const char ** urlSet = argv;
+	urlSet += 1;
+	int maxURLs = 20;
 
-		return 0;
-	}
+	printf("urlSet %s\n", *urlSet);
+
+	WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+	int i = 0;
+
+	//wCrawler->setTail(argc - 1);
+	wCrawler->crawl();
+	printf("tail %d\n", wCrawler->getTail());
+	wCrawler->urlText(url_file);
+	wCrawler->printArray();
+
+	return 0;
+
+	
 }	
