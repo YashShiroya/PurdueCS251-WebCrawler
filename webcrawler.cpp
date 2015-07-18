@@ -9,21 +9,21 @@
 
 
 // Add your implementation here
-char * _buffer = (char*) malloc(50000);
+char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(10000);
+char * buffer_k = (char*) malloc(1000);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(10000);
+char * buffer_m = (char*) malloc(1000);
 char * buffer_m_p = buffer_m;
 
-char * buffer_t = (char*) malloc(10000);
+char * buffer_t = (char*) malloc(1000);
 char * buffer_t_p = buffer_t;
 
-char * description = (char*) malloc(10000);
-char * title = (char*) malloc(10000);
-char * keywords = (char*) malloc(10000);
+char * description = (char*) malloc(1000);
+char * title = (char*) malloc(1000);
+char * keywords = (char*) malloc(1000);
 
 int wordLength = 0;
 char word[MAXWORD]; 
@@ -49,9 +49,9 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
-		_urlArray[i]._description = (char*) malloc(10000);
-		_urlArray[i]._title = (char*) malloc(10000);
-		_urlArray[i]._keywords = (char*) malloc(10000);
+		_urlArray[i]._description = (char*) malloc(1000);
+		_urlArray[i]._title = (char*) malloc(1000);
+		_urlArray[i]._keywords = (char*) malloc(1000);
 
 		_urlArray[i]._description = strdup("");
 		_urlArray[i]._title = strdup("");
@@ -136,7 +136,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 void WebCrawler::InsertNextWord(URLRecord *_array) {
 
-	char * local_buffer = (char*) malloc(50000);
+	char * local_buffer = (char*) malloc(5000);
 	
 	//char * lb = local_buffer;
 	int c;
@@ -204,9 +204,9 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 	FILE * file;
 	file = fopen(word_file, "w");
 	
-	int container[50000];
+	int container[1000];
 	
-	for(int i = 0; i < 50000; i++) container[i] = -7;
+	for(int i = 0; i < 1000; i++) container[i] = -7;
 	
 	
 	int index = -1;
@@ -526,7 +526,7 @@ WebCrawler::onContentFound(char character) {
 		wCrawler->crawl();
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
-		//wCrawler->writeWordFile(word_file);
+		wCrawler->writeWordFile(word_file);
 		wCrawler->printArray();
 
 		return 0;
