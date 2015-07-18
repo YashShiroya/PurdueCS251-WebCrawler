@@ -177,8 +177,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = NULL;
-						printf("Insert1\n");
-						printf("word: %s\n", word);
+						//printf("Insert1\n");
+						//printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u); 
 					}
 					
@@ -186,8 +186,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = temp;
-						printf("Insert2\n");
-						printf("word: %s\n", word);
+						//printf("Insert2\n");
+						//printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u);
 					}
 				}	
@@ -523,7 +523,7 @@ WebCrawler::onContentFound(char character) {
 		wCrawler->crawl();
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
-		wCrawler->writeWordFile(word_file);
+		//wCrawler->writeWordFile(word_file);
 		wCrawler->printArray();
 
 		return 0;
