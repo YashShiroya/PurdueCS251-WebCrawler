@@ -131,14 +131,7 @@ WebCrawler::onContentFound(char character) {
 	if(character == '[' || character == '}') {
 	
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-	char * s = buffer_start;
-				while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
+	
 		strcpy(buffer_m,"\n");
 		strcat(buffer_m,"Description:");
 		strcat(buffer_m,buffer_start);
@@ -148,14 +141,6 @@ WebCrawler::onContentFound(char character) {
 	}
 	if(character == ']' || character == '{') {
 	buffer_start[strlen(buffer_start) - 3] = '\0';
-	char * s = buffer_start;
-				while(s) {
-					if(*s == '"') {
-						*s = '\0';
-						break;
-					}
-					s++; 
-				}
 		strcpy(buffer_k,"\n");
 		strcat(buffer_k,"Keywords:");
 		strcat(buffer_k,buffer_start);
