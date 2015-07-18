@@ -1,32 +1,26 @@
-
 #include "webcrawler.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "openhttp.h"
 #include "SimpleHTMLParser.h"
-#define MAXWORD 500
-
 
 // Add your implementation here
-char * _buffer = (char*) malloc(50000);
+char * _buffer = (char*) malloc(5000);
 char * buffer_start = _buffer;
 
-char * buffer_k = (char*) malloc(10000);
+char * buffer_k = (char*) malloc(5000);
 char * buffer_k_p = buffer_k;
 
-char * buffer_m = (char*) malloc(10000);
+char * buffer_m = (char*) malloc(5000);
 char * buffer_m_p = buffer_m;
 
-char * buffer_t = (char*) malloc(10000);
+char * buffer_t = (char*) malloc(5000);
 char * buffer_t_p = buffer_t;
 
 char * description = (char*) malloc(10000);
 char * title = (char*) malloc(10000);
 char * keywords = (char*) malloc(10000);
-
-int wordLength = 0;
-char word[MAXWORD]; 
 
 WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs)
 {
@@ -39,13 +33,13 @@ WebCrawler::WebCrawler(int maxURLs, int nInitialURLs,  const char ** initialURLs
 	_headURL = 0;
 	_tailURL = nInitialURLs;
 	const char ** init = initialURLs;
-	strcpy(_buffer, "");
 	strcpy(buffer_k, "");
 	strcpy(buffer_m, "");
 	strcpy(buffer_t, "");
+	strcpy(_buffer, "");
+	
 
 	_urlToUrlRecord = new HashTableTemplate<int>();
-	_wordToURLRecordList = new HashTableTemplate<URLRecordList *>();
 
 	for(int i = 0; i < nInitialURLs; i++) {
 		_urlArray[i]._url = strdup(*init);
@@ -134,335 +128,234 @@ void WebCrawler::onAnchorFound(char * url) {
 
 }
 
-void WebCrawler::InsertNextWord(URLRecord *_array) {
-
-	char * local_buffer = (char*) malloc(50000);
-	
-	//char * lb = local_buffer;
-	int c;
-	//int i = 0;
-
-
-	for(int i = 0; i < _tailURL; i++) {
-		
-		strcpy(local_buffer, "");
-				
-		if(_array[i]._title != NULL) {
-			strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
-		}
-		if(_array[i]._description != NULL) {
-			strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
-		}
-				
-		char * lb = strdup(local_buffer);
-		
-		//nextword
-		while((c = *lb) != '\0') {
-		
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-') {
-				word[wordLength] = c; wordLength++;
-			}
-			else {	
-				//Pointer moved forward												 
-				//Word Complete
-				if(wordLength > 0) {
-				
-					//Add Here
-					word[wordLength] = '\0';
-					wordLength = 0;
-					char * t; 
-					t = strdup(word);
-					printf("word: %s\n", t);
-					/*URLRecordList * temp = NULL;
-					
-					if(_wordToURLRecordList->find(word, &temp) == false) {
-						URLRecordList * u = new URLRecordList();
-						u->_urlRecordIndex = i;
-						u->_next = NULL;
-						printf("Insert1\n");
-						printf("word: %s\n", word);
-						_wordToURLRecordList->insertItem(word, u); 
-					}
-					
-					else {
-						URLRecordList * u = new URLRecordList();
-						u->_urlRecordIndex = i;
-						u->_next = temp;
-						printf("Insert2\n");
-						printf("word: %s\n", word);
-						_wordToURLRecordList->insertItem(word, u);
-					}*/
-				}	
-			}
-			lb++;
-		}
-	}
-	
-}
-
-
-void WebCrawler::writeWordFile(const char *wordFileName) {
-	FILE * file;
-	file = fopen(word_file, "w");
-	
-	fclose(file);
-	
-	for(int i = 0; i < 2039; i++) {
-		
-		
-		if(_wordToURLRecordList->_buckets[i] != NULL) {
-			
-			HashTableTemplateEntry<URLRecordList *> * he = _wordToURLRecordList->_buckets[i];
-			
-			fprintf(file, "%s ", he->_key);
-			
-			while (he != NULL) {
-				
-				URLRecordList * e = he->_data;
-			
-				while(e != NULL) {
-				
-					fprintf(file, "%d ", e->_urlRecordIndex);
-					e = e->_next;
-				
-				}
-				
-				he = he->_next;
-			
-			}
-		}
-		
-	}
-}
-
 
 void
 WebCrawler::onContentFound(char character) {
 
-			char c = character;
+		char c = character;
+	
+	*_buffer = c;								//___________description = _buffer, desc = buffer_start
+	_buffer++;
+	*_buffer = '\0';
+	strcpy(buffer_m, "");
+	strcpy(buffer_k, "");
+	strcpy(buffer_t, "");
+	strcpy(_buffer, "");
 
-			*_buffer = c;								//___________description = _buffer, desc = buffer_start
-			_buffer++;
-			*_buffer = '\0';
-			strcpy(_buffer, "");
-			strcpy(buffer_m, "");
-			strcpy(buffer_k, "");
-			strcpy(buffer_t, "");
-
-			if(character == '+') {
-				buffer_start[strlen(buffer_start) - 1] = '\0';
-				char * s = buffer_start;
-				while(s) {
+	
+	if(character == '+') {
+	
+		buffer_start[strlen(buffer_start) - 1] = '\0';
+		char * s = buffer_start;
+		while(s) {
 					if(*s == '"') {
 						*s = '\0';
 						break;
 					}
 					s++; 
 				}
-				strcpy(buffer_t,"\n");
-				//strcat(buffer_t,"Title:");
-				strcat(buffer_t,buffer_start);
-				strcat(buffer_t,"\n");
-
-				_buffer = buffer_start;
-			}
-
-			if(character == '[' || character == '}') {
-				buffer_start[strlen(buffer_start) - 3] = '\0';
-				char * s = buffer_start;
-				while(s) {
+		strcpy(buffer_t,"\n");
+		strcat(buffer_t,"Title:");
+		strcat(buffer_t,buffer_start);
+		strcat(buffer_t,"\n");
+		
+		_buffer = buffer_start;
+	}
+	
+	if(character == '[' || character == '}') {
+	buffer_start[strlen(buffer_start) - 3] = '\0';
+	char * s = buffer_start;
+	while(s) {
 					if(*s == '"') {
 						*s = '\0';
 						break;
 					}
 					s++; 
 				}
-				strcpy(buffer_m,"\n");
-				//strcat(buffer_m,"Description:");
-				strcat(buffer_m,buffer_start);
-				strcat(buffer_m,"\n");
-
-				_buffer = buffer_start;
-			}
-
-			if(character == ']') {
-				buffer_start[strlen(buffer_start) - 3] = '\0';
-				char * s = buffer_start;
-				while(s) {
+		strcpy(buffer_m,"\n");
+		strcat(buffer_m,"Description:");
+		strcat(buffer_m,buffer_start);
+		strcat(buffer_m,"\n");
+		
+		_buffer = buffer_start;
+	}
+	
+	if(character == ']') {
+	buffer_start[strlen(buffer_start) - 3] = '\0';
+	char * s = buffer_start;
+	while(s) {
 					if(*s == '"') {
 						*s = '\0';
 						break;
 					}
 					s++; 
 				}
-				strcpy(buffer_k,"\n");
-				//strcat(buffer_k,"Keywords:");
-				strcat(buffer_k,buffer_start);
-				strcat(buffer_k,"\n");
+		strcpy(buffer_k,"\n");
+		strcat(buffer_k,"Keywords:");
+		strcat(buffer_k,buffer_start);
+		strcat(buffer_k,"\n");
 
-				_buffer = buffer_start;
-			}
-
-			if(character == '{') {
-				//buffer_start[strlen(buffer_start) - 4] = '\0';
-				char * s = buffer_start;
-				while(s) {
+		_buffer = buffer_start;
+	}
+	
+	if(character == '{') {
+	//buffer_start[strlen(buffer_start) - 4] = '\0';
+	char * s = buffer_start;
+	while(s) {
 					if(*s == '"') {
 						*s = '\0';
 						break;
 					}
 					s++; 
 				}
-				strcpy(buffer_k,"\n");
-				strcat(buffer_k,"Keywords:");
-				strcat(buffer_k,buffer_start);
-				strcat(buffer_k,"\n");
+		strcpy(buffer_k,"\n");
+		strcat(buffer_k,"Keywords:");
+		strcat(buffer_k,buffer_start);
+		strcat(buffer_k,"\n");
 
-				_buffer = buffer_start ;
-			}
+		_buffer = buffer_start;
+	}
+	
+	if(character == '_') {
+		memset (buffer_start,'\0',strlen(buffer_start));
+		memset (_buffer,'\0',strlen(_buffer));
+		_buffer = buffer_start;
+	}
+	
+	if(buffer_m == NULL || strlen(buffer_m) == 0) {
+		strcpy(buffer_m,"");
+	}
+	
+	if(buffer_k == NULL || strlen(buffer_k) == 0) {
+		strcpy(buffer_k,"");
+	}
+	
+	if(buffer_t == NULL || strlen(buffer_t) == 0) {
+		strcpy(buffer_t,"");
+	}
+	
+	
+	strcat(description, buffer_m);
+	//if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
+	
+	strcat(description, buffer_k);
+	//if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
+	
+	strcat(description, buffer_t);
+	//if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
+	
+	
+	_urlArray[_headURL]._description = strdup(description);	
+	_urlArray[_headURL]._title = strdup(title);	
+	_urlArray[_headURL]._keywords = strdup(keywords);
+	
+	return;
 
-			if(character == '_') {
-				memset (buffer_start,'\0',strlen(buffer_start));
-				memset (_buffer,'\0',strlen(_buffer));
-				_buffer = buffer_start;
-			}
+}
 
-			if(buffer_m == NULL || strlen(buffer_m) == 0) {
-				strcpy(buffer_m,"");
-			}
+void WebCrawler::crawl() {
 
-			if(buffer_k == NULL || strlen(buffer_k) == 0) {
-				strcpy(buffer_k,"");
-			}
+	int n;
 
-			if(buffer_t == NULL || strlen(buffer_t) == 0) {
-				strcpy(buffer_t,"");
-			}
+	while (_headURL < _tailURL) {
 
+		//Fetch the next URL in _headURL
 
-			strcat(description, buffer_m);
-			//if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
+		char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
 
-			strcat(keywords, buffer_k);
-			//if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
-
-			strcat(title, buffer_t);
-			//if(buffer_t[1] == 'T') memset(buffer_t, 0, strlen(buffer_t));
-
-
-			_urlArray[_headURL]._description = strdup(description);	
-			_urlArray[_headURL]._title = strdup(title);	
-			_urlArray[_headURL]._keywords = strdup(keywords);	
-
-			return;
-
+		if (buffer == NULL) {
+			fprintf(stderr, "*** Cannot open URL\n");	  
 		}
-
-	void WebCrawler::crawl() {
-
-		int n;
-
-		while (_headURL < _tailURL) {
-
-			//Fetch the next URL in _headURL
-
-			char * buffer = fetchHTML(_urlArray[_headURL]._url, &n);
-
-			if (buffer == NULL) {
-				fprintf(stderr, "*** Cannot open URL\n");	  
-			}
-			else 	parse(buffer, n);
-
-			memset(description, '\0', strlen(description));
+		else 	parse(buffer, n);
+		
+		memset(description, '\0', strlen(description));
 			memset(title, '\0', strlen(title));
 			memset(keywords, '\0', strlen(keywords));
-			_headURL++;
-			
-
-			//Increment _headURL
-
-			//_____________________---//    If the document is not text/html
+		_headURL++;
 
 
-			//continue;
-			/*Get the first 100 characters (at most) of the document without tags. Add this 
-			  description to theURL record for this URL.
+		//Increment _headURL
+
+		//_____________________---//    If the document is not text/html
+
+
+		//continue;
+		/*Get the first 100 characters (at most) of the document without tags. Add this 
+		  description to theURL record for this URL.
 
 
 
-			  Find all the hyperlinks of this document and add them to the
-			  _urlArray and _urlToUrlRecord if they are not already in the
-			  _urlToUrlRecord. Only insert up to _maxURL entries.
+		  Find all the hyperlinks of this document and add them to the
+		  _urlArray and _urlToUrlRecord if they are not already in the
+		  _urlToUrlRecord. Only insert up to _maxURL entries.
 
-			  For each word in the document without tags, add the index of this URL to
-			  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
-		}//while
-		
-		InsertNextWord(_urlArray);
-	}
+		  For each word in the document without tags, add the index of this URL to
+		  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
+	}//while
+}
 
 
-	bool WebCrawler::findArray(char * url) {		
-		int n1, n2;
-		for(int i = 0; i < _tailURL; i++) {
-			char * givenURL = strdup(url);
-			char * AtIndex = strdup(_urlArray[i]._url);
-			if(strcmp(givenURL, AtIndex) == 0) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-
-	void WebCrawler::printArray() {
-		printf("URL Array:\n");
-		for(int i = 0; i < getTail(); i++) {
-			printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
+bool WebCrawler::findArray(char * url) {		
+	int n1, n2;
+	for(int i = 0; i < _tailURL; i++) {
+		char * givenURL = strdup(url);
+		char * AtIndex = strdup(_urlArray[i]._url);
+		if(strcmp(givenURL, AtIndex) == 0) {
+			return true;
 		}
 	}
+	return false;
+}
 
 
-
-	void WebCrawler::setNull(char * str) {
-		int len = strlen(str);
-		char * s = str;
-		for(int i = 0; i < len; i++) {
-			*s = '\0';
-			s++;
-		}
+void WebCrawler::printArray() {
+	printf("URL Array:\n");
+	for(int i = 0; i < getTail(); i++) {
+		printf("%d._____\nURL: %s\n%s\n%s\n%s\n", i + 1, _urlArray[i]._url, _urlArray[i]._title, _urlArray[i]._description, _urlArray[i]._keywords);
 	}
+}
 
 
-	int WebCrawler::getTail() { return _tailURL;}
 
-	void WebCrawler::setTail(int tail) {_tailURL = tail;}
-
-	char * WebCrawler::removeNextLn(char * description) {
-		char * d = description;
-		char * desc_cpy = (char*) malloc(strlen(description) + 10);
-		strcpy(desc_cpy, "");
-		char * desc_cpy_start = desc_cpy;
-		//printf("desc_cpy_start %s\n", desc_cpy_start);
-		while(*d) {
-			if(*d != '\n') {
-				*desc_cpy = *d;
-				desc_cpy++;
-			}
-			d++;	
-		}
-		desc_cpy = '\0';
-		//printf("desc_cpy_start %s\n", desc_cpy_start);
-		return desc_cpy_start;
+void WebCrawler::setNull(char * str) {
+	int len = strlen(str);
+	char * s = str;
+	for(int i = 0; i < len; i++) {
+		*s = '\0';
+		s++;
 	}
+}
 
-	void WebCrawler::urlText(char * file_name) {
-		FILE * f = fopen(file_name, "w");
-		int i = 0;
-		if(f != NULL) {
-			while(i < _tailURL) {
 
-				fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
+int WebCrawler::getTail() { return _tailURL;}
+
+void WebCrawler::setTail(int tail) {_tailURL = tail;}
+
+char * WebCrawler::removeNextLn(char * description) {
+	char * d = description;
+	char * desc_cpy = (char*) malloc(strlen(description) + 10);
+	strcpy(desc_cpy, "a");
+	char * desc_cpy_start = desc_cpy;
+	//printf("desc_cpy_start %s\n", desc_cpy_start);
+	while(*d) {
+		if(*d != '\n') {
+			*desc_cpy = *d;
+			desc_cpy++;
+		}
+		d++;	
+	}
+	desc_cpy = '\0';
+	//printf("desc_cpy_start %s\n", desc_cpy_start);
+	return desc_cpy_start;
+}
+
+void WebCrawler::urlText(char * file_name) {
+	FILE * f = fopen(file_name, "w");
+	int i = 0;
+	if(f != NULL) {
+		while(i < _tailURL) {
+
+			fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
 
 				if((_urlArray[i]._title) == NULL) fprintf(f," %s", "<TITLE IS NULL>");
 				else fprintf(f," %s", removeNextLn(_urlArray[i]._title));
@@ -477,31 +370,29 @@ WebCrawler::onContentFound(char character) {
 
 				i++;
 
-			}
-			fclose(f);
-		}	
-		else return;
-	}
+		}
+		fclose(f);
+	}	
+	else return;
+}
 
 
-	int main(int argc, const char ** argv) { 
+int main(int argc, const char ** argv) { 
 
-		const char ** urlSet = argv;
-		urlSet += 1;
-		int maxURLs = 50;
+	const char ** urlSet = argv;
+	urlSet += 1;
+	int maxURLs = 20;
 
-		printf("urlSet %s\n", *urlSet);
+	printf("urlSet %s\n", *urlSet);
 
-		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
-		int i = 0;
+	WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
+	int i = 0;
 
-		//wCrawler->setTail(argc - 1);
-		wCrawler->crawl();
-		printf("tail %d\n", wCrawler->getTail());
-		wCrawler->urlText(url_file);
-		wCrawler->writeWordFile(word_file);
-		wCrawler->printArray();
+	//wCrawler->setTail(argc - 1);
+	wCrawler->crawl();
+	printf("tail %d\n", wCrawler->getTail());
+	wCrawler->urlText(url_file);
+	wCrawler->printArray();
 
-		return 0;
-	}
-
+	return 0;
+}
