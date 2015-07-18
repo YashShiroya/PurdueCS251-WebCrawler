@@ -160,7 +160,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		//nextword
 		while((c = *lb) != '\0') {
 		
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!') {
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!' && c != '"') {
 				word[wordLength] = c; wordLength++;
 			}
 			else {	
@@ -443,7 +443,7 @@ WebCrawler::onContentFound(char character) {
 		char * desc_cpy_start = desc_cpy;
 		//printf("desc_cpy_start %s\n", desc_cpy_start);
 		while(*d) {
-			if(*d != '\n') {
+			if(*d != '\n' && *d != ',' && *d != '"') {
 				*desc_cpy = *d;
 				desc_cpy++;
 			}
@@ -463,15 +463,15 @@ WebCrawler::onContentFound(char character) {
 				fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
 
 				if((_urlArray[i]._title) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._title));
+				else fprintf(f," %s ", removeNextLn(_urlArray[i]._title));
 
 				if((_urlArray[i]._description) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n\n", removeNextLn(_urlArray[i]._description));
+				else fprintf(f," %s ", removeNextLn(_urlArray[i]._description));
 
 				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._keywords));
+				else fprintf(f," %s ", removeNextLn(_urlArray[i]._keywords));
 
-				fprintf(f,"\n\n");			
+				fprintf(f,"\n");			
 
 				i++;
 
