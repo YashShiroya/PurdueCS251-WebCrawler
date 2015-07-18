@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "openhttp.h"
 #include "SimpleHTMLParser.h"
-#define MAXWORD 200
+#define MAXWORD 500
 
 
 // Add your implementation here
@@ -140,36 +140,38 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 	strcpy(local_buffer, "");
 	//char * lb = local_buffer;
 	int c;
-	int i = 0;
+	//int i = 0;
 
 
 	for(int i = 0; i < _tailURL; i++) {
 		
 		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
-		strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
+		//strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		
 		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
 		
 		char * lb = strdup(local_buffer);
-
+		
 		//nextword
 		while((c = *lb) != '\0') {
 		
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
-				word[i++] = c;
+				word[wordLength++] = c;
 			}
 			else {	
 				//Pointer moved forward												 // if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
 				lb++;
 				
 				//Word Complete
-				if(i > 0) {
+				if(wordLength > 0) {
 				
 					//Add Here
-					word[i] = '\0';
-					i = 0;
-					
-					URLRecordList * temp = NULL;
+					word[wordLength] = '\0';
+					wordLength = 0;
+					char * t; 
+					t = strdup(word);
+					printf("word: %s\n", t);
+					/*URLRecordList * temp = NULL;
 					
 					if(_wordToURLRecordList->find(word, &temp) == false) {
 						URLRecordList * u = new URLRecordList();
@@ -187,7 +189,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						printf("Insert2\n");
 						printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u);
-					}
+					}*/
 				}	
 			}
 			lb++;
