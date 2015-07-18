@@ -234,27 +234,10 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 		
 	}
 }
-	/*char * nextword(char * string){
-	  int c = string;
-	  int i = 0;
 
-	  memset(word, 0, MAXWORD);
 
-	  while(c) {
-	  if( c != 32 && c != '\n' && c != '\r' && c != '\t') {
-	  word[i++] = c;
-	  }
-	  else if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
-	  if(i > 0) {
-	  return word;
-	  }
-	  }
-	  }
-	  return NULL;
-	  }*/
-
-	void
-		WebCrawler::onContentFound(char character) {
+void
+WebCrawler::onContentFound(char character) {
 
 			char c = character;
 
@@ -277,7 +260,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					s++; 
 				}
 				strcpy(buffer_t,"\n");
-				strcat(buffer_t,"Title:");
+				//strcat(buffer_t,"Title:");
 				strcat(buffer_t,buffer_start);
 				strcat(buffer_t,"\n");
 
@@ -295,7 +278,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					s++; 
 				}
 				strcpy(buffer_m,"\n");
-				strcat(buffer_m,"Description:");
+				//strcat(buffer_m,"Description:");
 				strcat(buffer_m,buffer_start);
 				strcat(buffer_m,"\n");
 
@@ -313,7 +296,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					s++; 
 				}
 				strcpy(buffer_k,"\n");
-				strcat(buffer_k,"Keywords:");
+				//strcat(buffer_k,"Keywords:");
 				strcat(buffer_k,buffer_start);
 				strcat(buffer_k,"\n");
 
