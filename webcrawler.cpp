@@ -142,7 +142,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 	int c;
 	//int i = 0;
 
-
+//nextword
 	for(int i = 0; i < _tailURL; i++) {
 		
 		strcpy(local_buffer, "");
@@ -160,6 +160,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		//nextword
 		while((c = *lb) != '\0') {
 		
+			if(c >= 'A' && c <= 'Z') c += ' ';
+			
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!' && c != '"') {
 				word[wordLength] = c; wordLength++;
 			}
