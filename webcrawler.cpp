@@ -168,9 +168,9 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 					word[i] = '\0';
 					i = 0;
 					
-					URLRecordList temp = NULL;
+					URLRecordList * temp = NULL;
 					
-					if(wordToURLRecordList->find(word, &temp) == false) {
+					if(_wordToURLRecordList->find(word, &temp) == false) {
 						URLRecordList * u = new URLRecordList();
 						u->_urlRecordIndex = i;
 						u->_next = NULL;
