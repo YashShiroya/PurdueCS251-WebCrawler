@@ -136,7 +136,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 void WebCrawler::InsertNextWord(URLRecord *_array) {
 
-	char * local_buffer = (char*) malloc(5000000);
+	char * local_buffer = (char*) malloc(50000);
 	strcpy(local_buffer, "");
 	char * lb = local_buffer;
 	int c;
@@ -153,7 +153,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 		memset(word, 0, MAXWORD);
 
-
+printf("YOLO3\n");
 		//nextword
 		while(c = *lb) {
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
