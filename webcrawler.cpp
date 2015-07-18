@@ -491,16 +491,16 @@ WebCrawler::onContentFound(char character) {
 
 				fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
 
-				if((_urlArray[i]._title) == NULL) fprintf(f," %s\n", "");
+				if((_urlArray[i]._title) == NULL) fprintf(f,"");
 				else fprintf(f," %s", removeNextLn(_urlArray[i]._title));
 
-				if((_urlArray[i]._description) == NULL) fprintf(f," %s\n", "");
+				if((_urlArray[i]._description) == NULL) fprintf(f,"");
 				else fprintf(f," %s", removeNextLn(_urlArray[i]._description));
 
-				if((_urlArray[i]._keywords) == NULL) fprintf(f," %s\n", "");
+				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
 				else fprintf(f," %s", removeNextLn(_urlArray[i]._keywords));
 
-				fprintf(f,"\n\n\n");			
+				fprintf(f,"\n\n");			
 
 				i++;
 
