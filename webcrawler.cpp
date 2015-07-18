@@ -153,15 +153,11 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		if(_array[i]._description != NULL) {
 			strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		}
-		
-		//strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
-		printf("title: %s\n", local_buffer);
-		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
-		
+				
 		char * lb = strdup(local_buffer);
 		
 		//nextword
-		/*while((c = *lb) != '\0') {
+		while((c = *lb) != '\0') {
 		
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-') {
 				word[wordLength] = c; wordLength++;
@@ -195,11 +191,11 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 						printf("Insert2\n");
 						printf("word: %s\n", word);
 						_wordToURLRecordList->insertItem(word, u);
-					}
+					}*/
 				}	
 			}
 			lb++;
-		}*/
+		}
 	}
 	
 }
