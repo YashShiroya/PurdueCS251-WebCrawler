@@ -473,7 +473,7 @@ WebCrawler::onContentFound(char character) {
 				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
 				else fprintf(f," %s ", removeNextLn(_urlArray[i]._keywords));
 
-				fprintf(f,"\n");			
+				fprintf(f,"\n\n");			
 
 				i++;
 
