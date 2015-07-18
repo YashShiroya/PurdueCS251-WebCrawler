@@ -162,10 +162,10 @@ WebCrawler::onContentFound(char character) {
 	
 	
 	strcat(description, buffer_m);
-	if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
+	//if(buffer_m[1] == 'D') memset(buffer_m, 0, strlen(buffer_m));
 	
 	strcat(description, buffer_k);
-	if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
+	//if(buffer_k[1] == 'K') memset(buffer_k, 0, strlen(buffer_k));
 	
 	_urlArray[_headURL]._description = strdup(description);	
 	
