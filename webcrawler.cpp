@@ -153,7 +153,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		if(_array[i]._description != NULL) {
 			strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		}
-				
+		
+		if(strcmp(local_buffer, "") == 0) continue;		
 		char * lb = strdup(local_buffer);
 		
 		//nextword
