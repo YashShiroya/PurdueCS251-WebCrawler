@@ -515,7 +515,7 @@ WebCrawler::onContentFound(char character) {
 
 		const char ** urlSet = argv;
 		urlSet += 1;
-		int maxURLs = 50;
+		int maxURLs = 40;
 
 		printf("urlSet %s\n", *urlSet);
 
