@@ -144,18 +144,19 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 
 	for(int i = 0; i < _tailURL; i++) {
-		printf("YOLO\n");
+		
 		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
 		strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
-		printf("YOLO2\n");
+		
 		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
 
 
 		memset(word, 0, MAXWORD);
 
-		printf("YOLO3\n");
+		
 		//nextword
 		while(c = *lb) {
+		printf("YOLO\n");
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
 				word[i++] = c;
 			}
