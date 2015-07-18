@@ -203,7 +203,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 	FILE * file;
 	file = fopen(word_file, "w");
 	
-	fclose(file);
+	
 	
 	for(int i = 0; i < 2039; i++) {
 		
@@ -231,6 +231,8 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 		}
 		
 	}
+	
+	fclose(file);
 }
 
 
