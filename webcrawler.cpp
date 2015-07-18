@@ -189,6 +189,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 			}
 		}
 	}
+	printf("YOLO\n");
 }
 
 
