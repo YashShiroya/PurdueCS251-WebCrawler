@@ -190,6 +190,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 					}
 				}	
 			}
+			lb++;
 		}
 	}
 	
