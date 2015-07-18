@@ -99,7 +99,7 @@ bool HashTableTemplate<Data>::find( const char * key, Data * data)
 {
   // Add implementation here
  // Add implementation here
-	int h = hash(key);
+	/*int h = hash(key);
 	HashTableTemplateEntry<Data> * he = _buckets[h];
 	while(he != NULL) {
 		if(!strcmp(he->_key, key)) {
@@ -109,7 +109,20 @@ bool HashTableTemplate<Data>::find( const char * key, Data * data)
 		he = he -> _next;
 	}	
 
-  return false;
+  return false;*/
+  
+   int h = hash(key);
+
+    HashTableTemplateEntry<Data> * e = _buckets[h];
+    while (e!=NULL) {
+        if (!strcmp(e->_key, key)) {
+            // Entry found
+            *data = e->_data;
+            return true;
+        }
+        e = e->_next;
+    }
+    return false;
 
 }
 
