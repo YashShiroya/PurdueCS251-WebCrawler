@@ -153,7 +153,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 		memset(word, 0, MAXWORD);
 
-		//printf("YOLO3\n");
+		printf("YOLO3\n");
 		//nextword
 		while(c = *lb) {
 			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
