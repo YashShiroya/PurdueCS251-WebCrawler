@@ -472,7 +472,7 @@ WebCrawler::onContentFound(char character) {
 		char * desc_cpy_start = desc_cpy;
 		//printf("desc_cpy_start %s\n", desc_cpy_start);
 		while(*d) {
-			if(*d != '\n' && *d != ',') {
+			if(*d != '\n') {
 				*desc_cpy = *d;
 				desc_cpy++;
 			}
@@ -495,7 +495,7 @@ WebCrawler::onContentFound(char character) {
 				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._title));
 
 				if((_urlArray[i]._description) == NULL) fprintf(f,"");
-				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._description));
+				else fprintf(f," %s\n\n", removeNextLn(_urlArray[i]._description));
 
 				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
 				else fprintf(f," %s\n", removeNextLn(_urlArray[i]._keywords));
@@ -511,28 +511,15 @@ WebCrawler::onContentFound(char character) {
 	}
 
 
-	int main(int argc, const char ** argv) {
+	int main(int argc, const char ** argv) { 
 
-		/*const char ** urlSet = argv;
-		int maxURLs = 1000;
-		WebCrawler * wCrawler;
-	 	if(argc < 2) {printf("Too few args\n"); return 1;}
-	 	else {
-	 	
-	 		if(strcmp(argv[1], "-u") == 0) {
-	 			maxURLs = atoi(argv[2]);
-	 			urlSet += 3;
-	 			wCrawler = new WebCrawler(maxURLs, argc - 3 , urlSet);
-	 		}
-	 		else {
-			urlSet += 1;
-			maxURLs = 1000;
-			wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
-	 	}
-		
+		const char ** urlSet = argv;
+		urlSet += 1;
+		int maxURLs = 50;
+
 		printf("urlSet %s\n", *urlSet);
 
-		
+		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
 		int i = 0;
 
 		//wCrawler->setTail(argc - 1);
@@ -540,25 +527,8 @@ WebCrawler::onContentFound(char character) {
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
 		wCrawler->writeWordFile(word_file);
-		wCrawler->printArray();*/
-		
-		const char ** urlSet = argv;
-		urlSet += 1;
-	int maxURLs = 50;
+		wCrawler->printArray();
 
-	printf("urlSet %s\n", *urlSet);
+		return 0;
+	}
 
-	WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
-	int i = 0;
-
-	//wCrawler->setTail(argc - 1);
-	wCrawler->crawl();
-	printf("tail %d\n", wCrawler->getTail());
-	//wCrawler->writeWordFile(word_file);
-	wCrawler->urlText(url_file);
-	wCrawler->printArray();
-
-	return 0;
-
-	
-}	
