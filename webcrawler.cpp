@@ -236,6 +236,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					
 					if(flag == 1) {
 						flag = 0;
+						e = e->_next;
 						continue;
 					}
 					
