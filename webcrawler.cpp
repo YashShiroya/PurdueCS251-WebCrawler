@@ -524,7 +524,7 @@ WebCrawler::onContentFound(char character) {
 		wCrawler->crawl();
 		printf("tail %d\n", wCrawler->getTail());
 		wCrawler->urlText(url_file);
-		//wCrawler->writeWordFile(word_file);
+		wCrawler->writeWordFile(word_file);
 		wCrawler->printArray();
 
 		return 0;
