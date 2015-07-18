@@ -136,8 +136,7 @@ void WebCrawler::onAnchorFound(char * url) {
 
 void WebCrawler::InsertNextWord(URLRecord *_array) {
 
-	char * local_buffer = (char*) malloc(50000);
-	strcpy(local_buffer, "");
+	
 	//char * lb = local_buffer;
 	int c;
 	//int i = 0;
@@ -145,6 +144,8 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 
 	for(int i = 0; i < _tailURL; i++) {
 		
+		char * local_buffer = (char*) malloc(50000);
+		strcpy(local_buffer, "");
 		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
 		//strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
 		printf("title: %s\n", local_buffer);
@@ -155,7 +156,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		//nextword
 		while((c = *lb) != '\0') {
 		
-			if( c != 32  && c != '\r' && c != '\t' && c != ',') {
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
 				word[wordLength++] = c;
 			}
 			else {	
