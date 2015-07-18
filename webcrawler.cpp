@@ -514,7 +514,7 @@ WebCrawler::onContentFound(char character) {
 	int main(int argc, const char ** argv) {
 
 		const char ** urlSet = argv;
-		int maxURLs = 10;
+		int maxURLs = 1000;
 	 	if(argc < 2) {printf("Too few args\n"); return 1;}
 	 	else {
 	 	
