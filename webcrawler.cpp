@@ -428,7 +428,7 @@ WebCrawler::onContentFound(char character) {
 			  a URLRecordList in the _wordToURLRecordList table if the URL is not already there.*/
 		}//while
 		
-		InsertNextWord(_urlArray);
+		//InsertNextWord(_urlArray);
 	}
 
 
