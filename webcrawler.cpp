@@ -220,7 +220,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			
 			HashTableTemplateEntry<URLRecordList *> * he = _wordToURLRecordList->_buckets[i];
 			
-			fprintf(file, "%s ", he->_key);
+			//fprintf(file, "%s ", he->_key);
 			
 			while (he != NULL) {
 			
