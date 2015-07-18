@@ -224,7 +224,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					e = e->_next;
 				
 				}
-				
+				fprintf(file, "\n");
 				he = he->_next;
 			
 			}
