@@ -511,12 +511,22 @@ WebCrawler::onContentFound(char character) {
 	}
 
 
-	int main(int argc, const char ** argv) { 
+	int main(int argc, const char ** argv) {
 
 		const char ** urlSet = argv;
-		urlSet += 1;
-		int maxURLs = 10;
-
+		int maxURLs = 1000;
+	 	if(argc < 2) {printf("Too few args\n"); return 1;}
+	 	else {
+	 	
+	 		if(strcmp(argv[1], "-u") == 0) {
+	 			maxURLs = atoi(argv[2]);
+	 			urlSet += 3;
+	 		}
+	 		else {
+			urlSet += 1;
+			maxURLs = 1000;
+	 	}
+		
 		printf("urlSet %s\n", *urlSet);
 
 		WebCrawler * wCrawler = new WebCrawler(maxURLs, argc - 1, urlSet);
@@ -531,3 +541,4 @@ WebCrawler::onContentFound(char character) {
 
 		return 0;
 	}
+}	
