@@ -472,7 +472,7 @@ WebCrawler::onContentFound(char character) {
 		char * desc_cpy_start = desc_cpy;
 		//printf("desc_cpy_start %s\n", desc_cpy_start);
 		while(*d) {
-			if(*d != '\n') {
+			if(*d != '\n' && *d != ',') {
 				*desc_cpy = *d;
 				desc_cpy++;
 			}
