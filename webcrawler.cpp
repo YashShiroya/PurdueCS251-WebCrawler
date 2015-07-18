@@ -156,12 +156,12 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		//nextword
 		while((c = *lb) != '\0') {
 		
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',') {
-				word[wordLength++] = c;
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-') {
+				word[wordLength] = c; wordLength++;
 			}
 			else {	
 				//Pointer moved forward												 // if( c == 32 || c == '\n' || c == '\r' || c == '\t') {
-				lb++;
+				//lb++;
 				
 				//Word Complete
 				if(wordLength > 0) {
