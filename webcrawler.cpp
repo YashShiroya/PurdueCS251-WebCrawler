@@ -147,6 +147,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		printf("YOLO\n");
 		strcat(local_buffer, _array[i]._title); strcat(local_buffer, " ");
 		strcat(local_buffer, _array[i]._description); strcat(local_buffer, " ");
+		printf("YOLO2\n");
 		//strcat(localbuffer, _array[i].keywords); strcat(local_buffer, " ");
 
 
