@@ -191,6 +191,40 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 	}
 }
 
+
+void WebCrawler::writeWordFile(const char *wordFileName) {
+	FILE * file;
+	file = fopen(word_file, "w");
+	
+	fclose(file);
+	
+	for(int i = 0; i < 2039; i++) {
+		
+		
+		if(_wordToURLRecordList->_buckets[i] != NULL) {
+			
+			HashTableTemplateEntry<URLRecordList *> * he = _wordToURLRecordList->_buckets[i];
+			
+			fprintf(file, "%s ", he->_key);
+			
+			while (he != NULL) {
+				
+				URLRecordList * e = he->_data;
+			
+				while(e != NULL) {
+				
+					fprintf(file, "%d ", e->_urlRecordIndex);
+					e = e->_next;
+				
+				}
+				
+				he = he->_next;
+			
+			}
+		}
+		
+	}
+}
 	/*char * nextword(char * string){
 	  int c = string;
 	  int i = 0;

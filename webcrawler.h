@@ -6,11 +6,10 @@
 #include "SimpleHTMLParser.h"
 
 #define url_file "url.txt"
+#define word_file "word.txt"
 
 // Stores a URL and the first 100 words
-struct URLDescription {
-	
-};
+
 
 struct URLRecord {
   char * _url;          // URL of the document.
