@@ -223,7 +223,8 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 			fprintf(file, "%s ", he->_key);
 			
 			while (he != NULL) {
-				
+			
+			fprintf(file, "%s ", he->_key);	
 				URLRecordList * e = he->_data;
 				
 				while(e != NULL) {
@@ -247,7 +248,7 @@ void WebCrawler::writeWordFile(const char *wordFileName) {
 					
 					fprintf(file, "%d ", e->_urlRecordIndex);
 					e = e->_next;
-				
+					
 				}
 				current_size = 0;
 				fprintf(file, "\n");
