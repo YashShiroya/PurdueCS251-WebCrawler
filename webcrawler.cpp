@@ -514,7 +514,7 @@ WebCrawler::onContentFound(char character) {
 	int main(int argc, const char ** argv) {
 
 		const char ** urlSet = argv;
-		int maxURLs = 1000;
+		int maxURLs = 10;
 	 	if(argc < 2) {printf("Too few args\n"); return 1;}
 	 	else {
 	 	
@@ -524,7 +524,7 @@ WebCrawler::onContentFound(char character) {
 	 		}
 	 		else {
 			urlSet += 1;
-			maxURLs = 1000;
+			maxURLs = 10;
 	 	}
 		
 		printf("urlSet %s\n", *urlSet);
