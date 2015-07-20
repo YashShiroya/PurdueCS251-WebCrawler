@@ -162,7 +162,7 @@ void WebCrawler::InsertNextWord(URLRecord *_array) {
 		
 			if(c >= 'A' && c <= 'Z') c += ' ';
 			
-			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!' && c != '"') {
+			if( c != 32 && c != '\n' && c != '\r' && c != '\t' && c != ',' && c != '-' && c != '.' && c != '!' && c != '"' && c != '&' && c != '*' && c != ';' && c != '/' && c != '\'') {
 				word[wordLength] = c; wordLength++;
 			}
 			else {	
