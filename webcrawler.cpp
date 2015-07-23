@@ -445,7 +445,7 @@ WebCrawler::onContentFound(char character) {
 		char * desc_cpy_start = desc_cpy;
 		//printf("desc_cpy_start %s\n", desc_cpy_start);
 		while(*d) {
-			if((*d >= 'A' && *d <= 'Z') || (*d >= 'a' && *d <= 'z') || (*d >= '0' && *d <= '9')) {//*d != '\n' && *d != ',' && *d != '"') {
+			if((*d >= 'A' && *d <= 'Z') || (*d >= 'a' && *d <= 'z') || (*d >= '0' && *d <= '9') || *d == ' ') {//*d != '\n' && *d != ',' && *d != '"') {
 				*desc_cpy = *d;
 				desc_cpy++;
 			}
