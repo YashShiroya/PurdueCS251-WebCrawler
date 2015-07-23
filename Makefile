@@ -13,3 +13,4 @@ git-commit:
 
 clean:
 	rm -f *.o gethttp core
+	rm -f *.o webcrawler core
