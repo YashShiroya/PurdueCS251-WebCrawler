@@ -464,16 +464,16 @@ WebCrawler::onContentFound(char character) {
 
 				fprintf(f,"%d %s\n",i + 1 ,_urlArray[i]._url);
 
-				if((_urlArray[i]._title) == NULL) fprintf(f,"");
+				if((_urlArray[i]._title) == NULL) printf("");
 				else printf("%s\n", removeNextLn(_urlArray[i]._title));
 
-				if((_urlArray[i]._description) == NULL) fprintf(f,"");
+				if((_urlArray[i]._description) == NULL) printf("");
 				else printf(" %s \n", removeNextLn(_urlArray[i]._description));
 
-				if((_urlArray[i]._keywords) == NULL) fprintf(f,"");
+				if((_urlArray[i]._keywords) == NULL) printf("");
 				else printf(" %s ", removeNextLn(_urlArray[i]._keywords));
 
-				fprintf(f,"\n\n");			
+				printf("\n\n");			
 
 				i++;
 
@@ -489,7 +489,7 @@ WebCrawler::onContentFound(char character) {
 		const char ** urlSet = argv;
 		//urlSet += 1;
 		int numInit = 0;
-		int maxURLs = 1000;
+		int maxURLs = 50;
 	
 		if(argc < 2) {
 			printf("Too few args\n");
