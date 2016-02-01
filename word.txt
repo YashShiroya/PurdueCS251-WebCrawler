@@ -1,0 +1,325 @@
+shiroya(yashshiroya) 0 
+10 22 
+a 46 38 35 32 29 17 16 14 12 10 7 3 2 
+21 22 
+s 38 35 34 32 30 29 19 10 7 4 2 
+| 0 
+300 11 
+301 39 
+￼and 4 
+365 31 
+an 14 
+as 7 
+at 47 30 18 15 13 
+of 49 47 46 45 34 30 22 19 17 7 5 
+in 38 35 32 29 28 22 17 16 15 10 7 2 
+we 47 
+is 49 47 46 30 17 16 14 
+on 45 36 30 12 7 3 
+or 46 
+so 17 
+wl 9 
+to 47 46 33 27 26 25 24 23 21 20 16 14 13 12 8 7 3 
+up 18 
+dec 22 
+can 18 
+big 7 
+and 49 47 46 42 41 38 36 35 34 33 32 30 29 28 22 19 18 17 16 15 14 13 12 10 7 4 3 2 
+act 47 
+are 28 22 
+jan 22 
+sea 7 
+all 36 30 4 
+job 34 
+has 36 
+see 17 16 
+web 45 
+day 33 
+amp 19 16 
+her 46 
+men 7 
+get 36 12 3 
+the 49 47 46 36 34 33 19 17 13 7 5 4 
+his 46 
+art 15 
+ten 7 
+for 45 38 37 36 35 32 29 10 2 
+how 49 
+its 46 
+buy 18 
+top 7 
+own 46 
+now 30 8 
+our 47 33 19 18 17 16 13 12 3 
+out 30 
+why 17 16 
+you 18 
+each 46 
+code 47 
+alma 7 
+read 4 
+gear 36 
+land 38 35 32 29 10 7 2 
+find 30 12 3 
+have 22 
+here 30 18 
+come 7 
+main 7 
+flat 36 
+fans 36 
+wide 45 
+help 33 
+home 7 
+meet 18 
+give 8 
+rate 36 
+best 34 4 
+walk 7 
+that 34 
+more 38 35 32 29 19 14 12 10 3 2 
+some 34 
+what 30 
+last 7 
+from 28 22 4 
+many 33 
+play 22 
+move 33 13 
+will 22 
+stem 16 
+moon 7 
+shop 36 
+arts 15 
+with 47 34 7 
+news 30 4 
+stay 30 
+west 7 
+ways 15 
+your 36 
+￼browse 4 
+media 49 
+reach 46 
+break 22 
+space 7 
+build 14 
+bring 14 
+among 46 7 
+learn 38 35 32 29 10 2 
+which 46 
+staff 33 28 
+hello 31 25 
+fairs 34 
+mater 7 
+major 38 35 32 29 10 2 
+teams 18 
+moral 47 
+moved 39 
+about 38 35 32 29 19 10 4 2 
+helps 49 
+grant 38 35 32 29 10 7 2 
+gifts 36 
+value 43 41 37 9 5 
+right 30 
+state 7 
+today 30 12 3 
+other 34 
+lives 17 
+sites 45 
+world 49 45 34 33 16 13 
+first 7 
+proud 7 
+every 46 33 
+store 36 
+known 38 35 32 29 10 2 
+visit 7 
+hours 22 
+worth 46 
+adhere 47 
+office 49 31 5 
+leader 16 
+global 16 
+career 34 
+ranked 7 
+health 42 
+member 7 
+boiler 18 
+public 42 7 
+center 37 
+giving 26 17 
+people 28 
+alumni 36 17 
+hosted 45 
+living 37 
+during 22 
+campus 22 9 7 
+nation 7 
+across 7 
+safety 42 9 
+majors 13 12 3 
+latest 4 
+moving 49 
+values 47 46 
+policy 46 
+always 17 
+browse 30 
+timely 43 
+purdue 49 47 46 45 43 42 41 40 38 37 36 35 34 33 32 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 10 9 8 7 5 4 3 2 0 
+person 46 
+mutual 46 
+minors 13 
+serves 7 
+winter 24 22 
+strive 46 
+status 9 
+sports 18 
+engaged 28 
+indiana 38 35 32 29 10 7 2 
+ethical 47 
+science 38 35 32 29 10 2 0 
+college 18 12 3 
+reduced 22 
+located 38 35 32 29 10 2 
+combine 15 
+choices 11 
+offices 22 
+apparel 36 
+careers 34 
+helping 28 
+connect 34 
+members 46 
+highest 47 
+healthy 37 
+prepare 13 
+conduct 47 
+service 30 4 
+hotline 40 
+centers 15 14 
+forward 49 33 13 
+respect 46 
+warning 43 
+tickets 18 
+started 12 3 
+dignity 46 
+faculty 33 28 
+content 45 
+housing 12 3 
+explore 34 33 19 18 16 15 13 
+shiroya 0 
+through 47 22 
+mission 47 
+current 30 
+sources 45 
+fosters 46 
+student 0 
+various 22 
+honesty 47 
+tuition 20 
+visitor 7 
+history 19 
+support 17 
+apparel: 36 
+academic 21 13 
+official 36 
+changing 16 
+becoming 12 3 
+valuable 17 
+research 38 35 32 29 16 10 7 2 
+building 14 
+colleges 13 
+behavior 47 
+releases 30 4 
+adopting 22 
+national 16 
+clothing 36 
+inherent 46 
+discover 18 
+theatres 15 
+shipping 36 
+together 14 
+personal 47 
+services 22 
+applying 12 3 
+warnings 43 
+programs 15 14 13 
+cultural 15 14 
+multiple 11 
+computer 0 
+powerful 15 
+students 36 28 17 13 
+academics 13 
+available 33 
+galleries 15 
+happening 30 
+education 15 
+tolerance 46 
+including 36 12 3 
+emergency 9 
+lafayette 38 35 32 29 10 7 2 
+athletics 18 
+marketing 49 
+standards 47 
+committed 46 14 
+locations 22 7 
+brightest 4 
+president 5 
+potential 46 
+worldwide 28 
+operation 22 
+inclusive 14 
+inclusion 41 
+statement 47 46 
+directory 23 
+yashkumar 0 
+discovery 16 
+resources 33 17 14 
+integrity 47 
+diversity 41 14 
+community 46 14 
+universit 0 
+blackboard 27 
+conference 7 
+disclaimer 45 
+facilities 22 
+individual 46 
+encourages 46 
+principles 47 
+recognizes 46 
+admissions 12 3 
+technology 38 35 32 29 10 2 
+intramural 18 
+traditions 19 
+innovation 16 
+university 49 47 46 45 43 42 41 40 38 37 36 35 34 33 32 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 10 9 8 7 5 4 3 2 0 
+merchandise 36 
+engineering 38 35 32 29 10 2 
+boilermaker 17 12 3 
+maintaining 46 
+redirecting 27 26 25 24 23 21 20 8 
+application 12 3 
+communicate 49 
+discoveries 38 35 32 29 10 4 2 
+perennially 7 
+information 43 12 7 3 
+permanently 39 
+yashshiroya 0 
+innovations 28 4 
+$description 43 41 37 9 5 
+sensitivity 46 
+recreational 18 
+achievements 19 
+boilermakers 36 34 19 7 
+professional 47 
+securepurdue 48 
+corporations 34 
+partnerships 16 
+requirements 12 3 
+universities 7 
+institutions 7 
+indispensable 47 
+understanding 46 
+entertainment 15 
+environmental 42 
+organizations 34 
+opportunities 34 18 
+entrepreneurship 28 
+commercialization 28 
+nondiscrimination 46 

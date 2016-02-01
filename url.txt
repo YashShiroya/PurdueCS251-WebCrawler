@@ -1,0 +1,50 @@
+1 http://yashshiroya.me
+2 http://yashshiroya.me/web_items/Resume.pdf
+3 http://www.purdue.edu/
+4 http://www.purdue.edu/purdue/admissions/index.php#linksRow
+5 http://www.purdue.edu/newsroom/index.html
+6 http://www.purdue.edu/president/index.html
+7 http://www.purdueofficialstore.com/index.html
+8 http://www.purdue.edu/visit/index.html
+9 http://www.purdue.edu/purdue/giveNow.html
+10 http://www.purdue.edu/emergency/index.html
+11 http://www.purdue.edu
+12 http://www.purdue.edu/index.php
+13 http://www.purdue.edu/purdue/admissions/index.php
+14 http://www.purdue.edu/purdue/academics/index.php
+15 http://www.purdue.edu/purdue/inclusion/index.php
+16 http://www.purdue.edu/purdue/arts/index.php
+17 http://www.purdue.edu/purdue/research/index.php
+18 http://www.purdue.edu/purdue/alumni/index.php
+19 http://www.purdue.edu/purdue/athletics/index.php
+20 http://www.purdue.edu/purdue/about/index.php
+21 http://www.purdue.edu/purdue/redirect.php?title=Tuition and Rates&amp;destination=https://www.purdue.edu/bursar/tuition/
+22 http://www.purdue.edu/purdue/redirect.php?title=Academic Calendar&amp;destination=https://www.purdue.edu/registrar/calendars/currentAcademic.html
+23 http://www.purdue.edu/newsroom/purduetoday/releases/2015/Q4/university-facilities-adopting-reduced-winter-break-hours.html
+24 http://www.purdue.edu/purdue/redirect.php?title=Directory&amp;destination=https://www.purdue.edu/directory/
+25 http://www.purdue.edu/purdue/redirect.php?title=Winter Graduation Gallery&amp;destination=http://purdue.photoshelter.com/gallery/Winter-Commencement-2015/G00001EanzSOykUs
+26 http://www.purdue.edu/purdue/redirect.php?title=Hello Office 365&amp;destination=http://www.purdue.edu/hello365/
+27 http://www.purdue.edu/purdue/redirect.php?title=Giving&amp;destination=https%3A%2F%2Fsecurelb.imodules.com%2Fs%2F1461%2Fcampaign%2Fgive.aspx%3Fsid%3D1461%26gid%3D1010%26pgid%3D3175%26cid%3D7440%26appealcode%3D13645
+28 http://www.purdue.edu/purdue/redirect.php?title=Blackboard&amp;destination=https://mycourses.purdue.edu/
+29 http://www.purdue.edu/purdue/commercialization/index.php
+30 http://www.purdue.edu/#footerone
+31 http://www.purdue.edu/newsroom/purduetoday/
+32 http://www.purdue.edu/hello365/faq.html
+33 http://www.purdue.edu/#footertwo
+34 http://www.purdue.edu/purdue/faculty_staff/index.php
+35 http://www.purdue.edu/purdue/careers/index.php
+36 http://www.purdue.edu/#footerthree
+37 http://www.purdueofficialstore.com/
+38 http://www.purdue.edu/hr/CHL/
+39 http://www.purdue.edu/#footerfour
+40 http://www.purdue.edu/hr
+41 http://www.purdue.edu/hotline/
+42 http://www.purdue.edu/diversity-inclusion/
+43 http://www.purdue.edu/ehps/
+44 http://www.purdue.edu/timely-warnings/
+45 http://purdue.amazon.com/
+46 http://www.purdue.edu/purdue/disclaimer.html
+47 http://www.purdue.edu/purdue/ea_eou_statement.html
+48 http://www.purdue.edu/purdue/about/integrity_statement.html
+49 http://www.purdue.edu/securepurdue/DMCAAgent.cfm
+50 http://www.purdue.edu/marketing/
