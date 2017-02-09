@@ -1,2 +1,2 @@
-| Web Crawler: implemented using custom CPP `HashTables Templates`| 
+| Web Crawler: implemented using custom CPP `HashTable Templates`| 
 |-------------|
