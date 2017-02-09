@@ -1,2 +1,2 @@
-| Web Crawler: implemented in `HashTables`, `Arrays`, `AVL Trees`, `Binary Trees`|
+| Web Crawler: implemented in `HashTables`| 
 |-------------|
